@@ -2,6 +2,13 @@
     background-color: #FFD105;
     height: 100vh;
 }
+.img{
+    background-image: url('/public/img/logo_bg_branco.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 450px;
+    height: 250px;
+}
 #input{
     margin-left: 50%;
     margin-top: 10%;
