@@ -2,20 +2,34 @@
     background-color: #FFD105;
     height: 100vh;
 }
-.img{
+.containerImg{
+    display: flex;
+    justify-content: center;
+}
+#img{
     background-image: url('/public/img/logo_bg_branco.png');
     background-repeat: no-repeat;
     background-size: cover;
-    width: 450px;
-    height: 250px;
+    max-width: 450px;
+    max-height: 250px;
+    margin-top: 50px;
+    min-height: 200px;
+    min-width: 350px;
 }
-#input{
+#input_email{
+    margin-top: 50px;
     margin-left: 50%;
-    margin-top: 10%;
     transform: translate(-50%, 0);
 }
-
-#btnLogin{
+#input_password{
+    margin-left: 50%;
+    transform: translate(-50%, 0);
+}
+.container_btnLogin{
+    display: flex;
+    justify-content: center;
+}
+.btnLogin{
     background-color: #5922A0;
     color: #fff;
     border-radius: 10cap;
@@ -27,8 +41,19 @@
     justify-content: center;
     align-items: center;
 }
-
-#btnGoogle{
+.container_loginGoogle{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.logo_google{
+    background-image: url('/public/img/logo_google.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+}
+.btnGoogle{
     height: 30px;
     width: 200px;
     font-size: 1rem;
@@ -37,6 +62,6 @@
     background-color: #fff;
     color: black;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
