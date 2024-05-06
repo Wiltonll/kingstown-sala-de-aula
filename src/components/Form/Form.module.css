@@ -10,18 +10,19 @@
     background-image: url('/public/img/logo_bg_branco.png');
     background-repeat: no-repeat;
     background-size: cover;
-    max-width: 450px;
-    max-height: 250px;
+    border: 2px solid #5922A0;
     margin-top: 50px;
-    min-height: 200px;
-    min-width: 350px;
+    min-height: 250px;
+    min-width: 450px;
 }
 #input_email{
+    width: 40%;
     margin-top: 50px;
     margin-left: 50%;
     transform: translate(-50%, 0);
 }
 #input_password{
+    width: 40%;
     margin-left: 50%;
     transform: translate(-50%, 0);
 }
@@ -40,6 +41,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+.btnLogin:hover{
+    background-color: #401875;
+    transition: 0.2s ease-in-out;
 }
 .container_loginGoogle{
     display: flex;
@@ -64,4 +70,22 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    cursor: pointer;
+}
+.btnGoogle:hover{
+    transition: 0.2s ease-in-out;
+    background-color: #cacaca;
+}
+
+@media screen and (max-width: 750px) {
+    #input_email{
+        width: 80%;
+    }
+    #input_password{
+        width: 80%;
+    }
+    #img{
+        min-width: 350px;
+        min-height: 200px;
+    }
 }

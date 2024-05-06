@@ -10,13 +10,13 @@ function Form(){
             </div>
             <form>
                 <div className="row">
-                    <div className="input-field col s6" id={styles.input_email}>
+                    <div className="input-field" id={styles.input_email}>
                         <input id="email" type="email" className="validate"/>
                         <label for="email">Email</label>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="input-field col s6" id={styles.input_password}>
+                    <div className="input-field" id={styles.input_password}>
                         <input id="password" type="password" className="validate"/>
                         <label for="password">Password</label>
                     </div>
