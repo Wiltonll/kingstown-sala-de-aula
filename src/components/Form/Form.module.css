@@ -12,8 +12,8 @@
     background-size: cover;
     border: 2px solid #5922A0;
     margin-top: 50px;
-    min-height: 250px;
-    min-width: 450px;
+    min-height: 200px;
+    min-width: 350px;
 }
 #input_email{
     width: 40%;
@@ -85,7 +85,7 @@
         width: 80%;
     }
     #img{
-        min-width: 350px;
-        min-height: 200px;
+        min-width: 250px;
+        min-height: 150px;
     }
 }
