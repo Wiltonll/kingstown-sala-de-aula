@@ -27,7 +27,7 @@ function Form(){
                 <div className={styles.container_loginGoogle}>
                     <button className={styles.btnGoogle}>
                         <div className={styles.logo_google}></div>
-                        Login with Google.
+                        Login with Google
                     </button>
                 </div>
             </form>
