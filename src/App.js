@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import Form from './components/Form';
 import M from 'materialize-css'
+import Sidenav from "./components/Sidenav";
 
 
 function App() {
-  useEffect(() => {
+  /*useEffect(() => {
     M.AutoInit()
-  }, []) 
+  }, [])  */
   return (
     <>
-      <Form/>
+      <Sidenav/>
     </>
   );
 }
