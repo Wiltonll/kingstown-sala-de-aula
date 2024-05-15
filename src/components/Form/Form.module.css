@@ -15,54 +15,27 @@
     min-height: 200px;
     min-width: 350px;
 }
-#input_email{
-    width: 40%;
+h4{
     margin-top: 50px;
-    margin-left: 50%;
-    transform: translate(-50%, 0);
-}
-#input_password{
-    width: 40%;
-    margin-left: 50%;
-    transform: translate(-50%, 0);
-}
-.container_btnLogin{
-    display: flex;
-    justify-content: center;
-}
-.btnLogin{
-    background-color: #5922A0;
-    color: #fff;
-    border-radius: 10cap;
-    font-size: 1.2rem;
-    height: 40px;
-    width: 150px;
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-.btnLogin:hover{
-    background-color: #401875;
-    transition: 0.2s ease-in-out;
+    text-align: center;
+    color: #461c7e;
 }
 .container_loginGoogle{
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 50px;
 }
 .logo_google{
     background-image: url('/public/img/logo_google.png');
     background-repeat: no-repeat;
     background-size: cover;
-    width: 20px;
-    height: 20px;
+    width: 23px;
+    height: 23px;
 }
 .btnGoogle{
-    height: 30px;
+    height: 50px;
     width: 200px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     border-radius: 10cap;
     border: 2px solid black;
     background-color: #fff;
@@ -78,12 +51,6 @@
 }
 
 @media screen and (max-width: 750px) {
-    #input_email{
-        width: 80%;
-    }
-    #input_password{
-        width: 80%;
-    }
     #img{
         min-width: 250px;
         min-height: 150px;

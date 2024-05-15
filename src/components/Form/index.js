@@ -9,21 +9,7 @@ function Form(){
                 </div>
             </div>
             <form>
-                <div className="row">
-                    <div className="input-field" id={styles.input_email}>
-                        <input id="email" type="email" className="validate"/>
-                        <label for="email">Email</label>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="input-field" id={styles.input_password}>
-                        <input id="password" type="password" className="validate"/>
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-                <div className={styles.container_btnLogin}>
-                    <input className={styles.btnLogin} type="submit" value="Login"/>
-                </div>
+                <h4>Faça login com sua conta Google </h4>
                 <div className={styles.container_loginGoogle}>
                     <button className={styles.btnGoogle}>
                         <div className={styles.logo_google}></div>
