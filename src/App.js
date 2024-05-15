@@ -4,9 +4,6 @@ import Sidenav from "./components/Sidenav";
 
 
 function App() {
-  /*useEffect(() => {
-    M.AutoInit()
-  }, [])  */
   return (
     <>
       <Sidenav/>
