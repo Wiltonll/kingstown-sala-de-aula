@@ -16,8 +16,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import HomeIcon from '@mui/icons-material/Home';
+import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -111,7 +111,7 @@ export default function Sidenav() {
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
-            color="inherit"
+            color="black"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -149,31 +149,12 @@ export default function Sidenav() {
                   justifyContent: 'center',
                 }}
               >
-                <InboxIcon />
+                <HomeIcon/>
               </ListItemIcon>
               <ListItemText primary="ínicio" sx={{ opacity: open ? 1 : 0, fontWeight: 'bold' }} />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => {navigate("/settings")}}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-                }}
-              >
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Configurações" sx={{ opacity: open ? 1 : 0, fontWeight: 'bold' }} />
-            </ListItemButton>
-          </ListItem>
+          <Divider/>
           <ListItem disablePadding sx={{ display: 'block' }} onClick={() => {navigate("/about")}}>
             <ListItemButton
               sx={{
@@ -189,11 +170,13 @@ export default function Sidenav() {
                   justifyContent: 'center',
                 }}
               >
-                <InboxIcon />
+                <SearchIcon/>
               </ListItemIcon>
               <ListItemText primary="Minhas Turmas:" sx={{ opacity: open ? 1 : 0, fontWeight: 'bold' }} />
             </ListItemButton>
           </ListItem>
+          <Divider/>
+
         </List>
       </Drawer>
       
