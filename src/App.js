@@ -4,11 +4,16 @@ import Settings from './pages/Settings';
 import React, { useEffect } from "react";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
 import Form from './components/Form';
+import Turma from './components/Turma'
 
 
 function App() {
   return (
     <>
+
+      <Turma/>
+
+      {/*
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Home />}></Route>
@@ -16,6 +21,7 @@ function App() {
           <Route path="/settings" exact element={<Settings />}></Route>
         </Routes>
       </BrowserRouter>
+      */}
     </>
   );
 }
