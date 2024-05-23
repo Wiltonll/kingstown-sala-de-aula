@@ -9,6 +9,8 @@ import Form from './components/Form';
 function App() {
   return (
     <>
+    <Form />
+    {/*
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Home />}></Route>
@@ -16,6 +18,7 @@ function App() {
           <Route path="/settings" exact element={<Settings />}></Route>
         </Routes>
       </BrowserRouter>
+      */}
     </>
   );
 }
