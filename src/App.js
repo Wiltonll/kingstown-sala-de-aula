@@ -1,3 +1,4 @@
+
 import Home from './pages/Home';
 import About from './pages/About';
 import Settings from './pages/Settings';
@@ -10,9 +11,7 @@ import Turma from './components/Turma'
 function App() {
   return (
     <>
-
-      <Form />
-
+    <Form />
       {/*
       <BrowserRouter>
         <Routes>
