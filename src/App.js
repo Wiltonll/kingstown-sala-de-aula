@@ -1,21 +1,23 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Settings from './pages/Settings';
-import React, { useEffect } from "react";
-import {Routes, Route, BrowserRouter} from "react-router-dom";
-import Form from './components/Form';
-
+import Sidenav from './components/Sidenav'; // Importe o componente de barra lateral aqui
+import CriarTurmaPage from './components/CriarTurma'; // Importe a página de criação de turma aqui
 
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <Router>
+        <Sidenav /> {/* Renderize a barra lateral em torno das rotas */}
         <Routes>
-          <Route path="/" exact element={<Home />}></Route>
-          <Route path="/about" exact element={<About />}></Route>
-          <Route path="/settings" exact element={<Settings />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/criar-turma" element={<CriarTurmaPage />} /> {/* Rota para a página de criação de turma */}
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
   );
 }

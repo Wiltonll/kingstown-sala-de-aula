@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const drawerWidth = 240;
 
@@ -50,7 +51,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -71,7 +71,7 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
   backgroundColor: '#FFD105',
-  borderBottom: `2px solid #5922A0`, // Adicionando a borda na cor #5922A0
+  borderBottom: `2px solid #5922A0`,
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -105,6 +105,10 @@ export default function Sidenav() {
     setOpen(false);
   };
 
+  const handleCreateClass = () => {
+    navigate('/criar-turma');
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -125,6 +129,20 @@ export default function Sidenav() {
           <Typography variant="h6" noWrap component="div" fontWeight="bold" color="#5922A0">
             Kingstown - Sala de aula
           </Typography>
+          <Button
+            variant="contained"
+            onClick={handleCreateClass}
+            sx={{
+              marginLeft: 'auto',
+              backgroundColor: '#FFD105',
+              color: '#5922A0',
+              '&:hover': {
+                backgroundColor: '#E6C104',
+              },
+            }}
+          >
+            Criar Turma
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -176,10 +194,8 @@ export default function Sidenav() {
             </ListItemButton>
           </ListItem>
           <Divider/>
-
         </List>
       </Drawer>
-      
     </Box>
   );
 }
