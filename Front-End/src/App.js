@@ -10,7 +10,15 @@ import Form from './components/Form';
 function App() {
   return (
     <>
-      <Form/>
+      <Router>
+        <Sidenav /> {/* Renderize a barra lateral em torno das rotas */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/criar-turma" element={<CriarTurmaPage />} /> {/* Rota para a página de criação de turma */}
+        </Routes>
+      </Router>
     </>
   );
 }
