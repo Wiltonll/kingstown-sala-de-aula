@@ -5,6 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="index.css">
     <meta
       name="description"
       content="Web site created using create-react-app"
@@ -17,6 +18,22 @@
     <title>Kingstown Sala de Aula</title>
   </head>
   <body>
+    <div class="imagem-container">
+    <img src="logo_bg_branco.png" alt="logo_empresa">
+  </div>
+  <form action="" class="form_main">
+      
+    <div class="inputContainer">
+        <input type="text" class="inputField" id="username" placeholder="Mátricula">
+    </div>
+
+    <div class="inputContainer">
+        <input type="password" class="inputField" id="password" placeholder="Senha">
+    </div>
+
+    <button id="button">Entrar</button>
+    <a class="forgotLink" href="#">Esqueceu sua senha?</a>
+</form>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
