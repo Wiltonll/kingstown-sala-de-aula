@@ -9,7 +9,7 @@ function Form(){
         <div className={styles.body}>
             <div className={styles.containerImg}>
                 <div id={styles.img}>
-                    <img src={Imagem} alt=""/>
+                    <img src={Imagem} alt="Logo"/>
                 </div>
             </div>
             <form>
