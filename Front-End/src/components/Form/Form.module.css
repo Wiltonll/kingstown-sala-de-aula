@@ -6,53 +6,22 @@
     display: flex;
     justify-content: center;
 }
-#img{
-    background-image: url('/public/img/logo_bg_branco.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+img{
     border: 2px solid #5922A0;
     margin-top: 50px;
-    min-height: 200px;
-    min-width: 350px;
+    height: 200px;
+    width: 350px;
 }
 h4{
     margin-top: 50px;
     text-align: center;
     color: #461c7e;
 }
-.container_loginGoogle{
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-}
-.logo_google{
-    background-image: url('/public/img/logo_google.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 23px;
-    height: 23px;
-}
-.btnGoogle{
-    height: 50px;
-    width: 200px;
-    font-size: 1.2rem;
-    border-radius: 10cap;
-    border: 2px solid black;
-    background-color: #fff;
-    color: black;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    cursor: pointer;
-}
-.btnGoogle:hover{
-    transition: 0.2s ease-in-out;
-    background-color: #cacaca;
-}
+
 
 @media screen and (max-width: 750px) {
-    #img{
-        min-width: 250px;
-        min-height: 150px;
+    img{
+        width: 300px;
+        height: 170px;
     }
 }
