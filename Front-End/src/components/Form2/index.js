@@ -1,4 +1,3 @@
-import "./Form.module.css"
 import React from 'react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
@@ -20,7 +19,9 @@ const Form2 = () => {
     }
 
   return (
-    <div className="container">
+    <div className={styles.body}>
+      <div className={styles.container}>
+
         <form onSubmit = {handleSubmit}>
              <h1>Faça seu login</h1>
              <div> 
@@ -32,9 +33,9 @@ const Form2 = () => {
                 <LockIcon className="icon" />
             </div>
             <a href="#"> Esqueci a senha</a>
-             <button>Entrar</button>
-        </form>
-      
+             <button> Entrar </button>
+        </form>    
+      </div>       
     </div>
   )
 }
