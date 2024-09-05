@@ -24,11 +24,11 @@ const Form2 = () => {
 
         <form onSubmit = {handleSubmit}>
              <h1>Faça seu login</h1>
-             <div> 
+             <div className={styles.inputfield}> 
                 <input type="text" placeholder= "Matricula" onChange={(e) => setUsername(e.target.value)}/>
                 <AccountCircleIcon className= "icon" />
              </div>
-             <div> 
+             <div className={styles.inputfield}>  
                 <input type="password" placeholder= "Senha" onChange={(e) => setPassword(e.target.value)}/>
                 <LockIcon className="icon" />
             </div>
