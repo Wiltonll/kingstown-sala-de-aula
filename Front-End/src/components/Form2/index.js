@@ -2,6 +2,7 @@ import React from 'react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
 import styles from './Form.module.css'
+import Image from '../../img/logo_branco_png.png';
 
 import { useState } from "react";
 
@@ -21,19 +22,19 @@ const Form2 = () => {
   return (
     <div className={styles.body}>
       <div className={styles.container}>
-
+        <img src={Image} alt=""/>
         <form onSubmit = {handleSubmit}>
              <h1>Faça seu login</h1>
              <div className={styles.inputfield}> 
-                <input type="text" placeholder= "Matricula" onChange={(e) => setUsername(e.target.value)}/>
-                <AccountCircleIcon className= "icon" />
+                <input type="text" placeholder= "Login" onChange={(e) => setUsername(e.target.value)}/>
+                <AccountCircleIcon className={styles.icon}/>
              </div>
              <div className={styles.inputfield}>  
-                <input type="password" placeholder= "Senha" onChange={(e) => setPassword(e.target.value)}/>
-                <LockIcon className="icon" />
+                <input type="password" placeholder= "Senha" onChange={(e) => setPassword(e.target.value)} />
+                <LockIcon className={styles.icon} />
             </div>
-            <a href="#"> Esqueci a senha</a>
-             <button> Entrar </button>
+            <a href="#" className={styles.link}> Esqueci a senha</a>
+            <button>Entrar</button>
         </form>    
       </div>       
     </div>
