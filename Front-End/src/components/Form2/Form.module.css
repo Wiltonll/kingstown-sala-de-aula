@@ -1,22 +1,39 @@
+
+.body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+    text-shadow: #000 1px 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url("../../img/background-purple.png");
+    background-size: cover;
+    background-position: center;
+}
 .container {
     display: inline-block;
     background-color: rgba(255, 255, 255, 0.164);
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.2);
-    padding: 40px;
+    padding: 10px 10px;
     border-radius: 10px;
     text-align: center;
 }
 
 img {
+    margin-top: 0px;
     border: none;
+    height: 140px;
 }
 
 h1 {
     color: #ffffff;
     font-size: 24pt;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    
+    text-shadow: 2px  rgba(0, 0, 0, 0.6);
     margin: 0 0 20px 0;
     text-align: center;
 }
@@ -45,21 +62,7 @@ input {
     color: white;
 }
 
-.body {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    box-sizing: border-box;
-    text-shadow: #000 1px 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-    background-image: url("../../img/background-purple.png");
-    background-size: cover;
-    background-position: center;
-}
+
 
 .link {
     margin-top: 20px;
