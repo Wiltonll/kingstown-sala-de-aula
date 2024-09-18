@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
 import styles from './Form.module.css'
@@ -9,11 +10,14 @@ import { useState } from "react";
 const Form2 = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    alert("Enviando os dados:" + username + " - " + password)
+    alert("Enviando os dados: " + username + " - " + password);
+
+    navigate('/sidenav');
 
     console.log("Teste", username, password)
     console.log("Envio")

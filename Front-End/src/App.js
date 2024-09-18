@@ -10,9 +10,12 @@ import Form2 from './components/Form2';
 
 function App() {
   return (
-    <>
-      <Form2/>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Form2 />} />
+        <Route path="/sidenav" element={<Sidenav />} />
+      </Routes>
+    </Router>
   );
 }
 
