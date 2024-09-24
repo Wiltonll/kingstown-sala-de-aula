@@ -28,7 +28,6 @@ const Form2 = () => {
       <div className={styles.container}>
         <img src={Image} alt="Logo da empresa" />
         <form onSubmit={handleSubmit}>
-          <h1>Faça seu login</h1>
           <div className={styles.inputfield}>
             <input type="text" placeholder="Login" onChange={(e) => setUsername(e.target.value)} />
             <AccountCircleIcon className={styles.icon} />

@@ -28,14 +28,6 @@ img {
     height: 130px;
 }
 
-h1 {
-    color: #ffffff;
-    font-size: 24pt;
-    text-shadow: 2px rgba(0, 0, 0, 0.6);
-    margin: 0 0 20px 0;
-    text-align: center;
-}
-
 .container .inputfield {
     position: relative;
     width: 100%;
