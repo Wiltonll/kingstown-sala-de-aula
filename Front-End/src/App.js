@@ -4,15 +4,14 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Settings from './pages/Settings';
 import Sidenav from './components/Sidenav'; // Importe o componente de barra lateral aqui
-import CriarTurmaPage from './components/CriarTurma'; // Importe a página de criação de turma aqui
-import Form from '../src/components/Form';
+import CriarTurma from './components/CriarTurma'; // Importe a página de criação de turma aqui
 import Form2 from './components/Form2';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Form2 />} />
+        <Route path="/" element={<CriarTurma />} />
         <Route path="/sidenav" element={<Sidenav />} />
       </Routes>
     </Router>

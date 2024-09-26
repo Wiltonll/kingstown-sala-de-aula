@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 
-export default function CriarTurmaPage() {
+export default function CriarTurma() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
