@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import CriarTurma from './components/CriarTurma';
+import InicioTurmas from './components/InicioTurmas';
 import Form from './components/Form';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<CriarTurma />} />
+        <Route path="/" element={<InicioTurmas />} />
       </Routes>
     </Router>
   );

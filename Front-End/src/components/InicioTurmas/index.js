@@ -1,6 +1,6 @@
 // src/components/CriarTurma.js
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import MenuDrawer from './MenuDrawer'; // Importar o MenuDrawer corretamente
 
 export default function CriarTurma() {
@@ -17,6 +17,12 @@ export default function CriarTurma() {
           backgroundColor: '#FFD105', // Cor de fundo amarelo
         }}
       >
+        <Typography
+          variant="h4"
+          sx={{ textAlign: 'center', marginBottom: 2, color: '#5922A0' }} // Estilo do título na parte superior
+        >
+          Kingstown - Sala de Aula
+        </Typography>
         {/* Aqui você pode adicionar mais conteúdo conforme necessário */}
       </Box>
     </Box>
