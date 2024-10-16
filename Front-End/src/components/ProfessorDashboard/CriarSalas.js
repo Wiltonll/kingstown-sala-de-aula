@@ -1,4 +1,3 @@
-// src/components/ProfessorDashboard/CriarSalas.js
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Box } from '@mui/material';
 

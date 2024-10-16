@@ -1,4 +1,3 @@
-// src/components/ProfessorDashboard/AlunosList.js
 import React from 'react';
 import { Typography, Box, List, ListItem, ListItemText, Button } from '@mui/material';
 

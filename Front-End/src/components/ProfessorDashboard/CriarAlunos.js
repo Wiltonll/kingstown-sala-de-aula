@@ -1,4 +1,3 @@
-// src/components/ProfessorDashboard/CriarAlunos.js
 import React from 'react';
 import { TextField, Button, Box, Typography } from '@mui/material';
 

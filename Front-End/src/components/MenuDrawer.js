@@ -1,4 +1,3 @@
-// src/components/MenuDrawer.js
 import * as React from 'react';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
@@ -23,7 +22,7 @@ import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const drawerWidth = 240; // Aumentado para 240px
+const drawerWidth = 240; 
 
 export default function MenuDrawer() {
   const navigate = useNavigate();

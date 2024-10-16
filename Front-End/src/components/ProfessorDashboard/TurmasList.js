@@ -1,4 +1,3 @@
-// src/pages/InicioTurmas.js
 import React from 'react';
 import { Box, Typography, Card, CardContent, Grid, Avatar, Button } from '@mui/material';
 

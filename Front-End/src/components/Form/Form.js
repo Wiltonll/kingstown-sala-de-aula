@@ -16,7 +16,7 @@ const Form = () => {
     // Exibir um alerta com os dados (remova ou altere conforme necessário)
     alert("Enviando os dados: " + username + " - " + password);
 
-    // Aqui você pode adicionar a lógica de autenticação
+    // Aqui pode adicionar a lógica de autenticação
     // Por exemplo, verificar se os dados estão corretos.
 
     // Se a autenticação for bem-sucedida, redirecionar para 'InicioTurmas'
