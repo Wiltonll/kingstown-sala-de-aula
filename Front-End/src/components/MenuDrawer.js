@@ -23,7 +23,7 @@ import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const drawerWidth = 240;
+const drawerWidth = 240; // Aumentado para 240px
 
 export default function MenuDrawer() {
   const navigate = useNavigate();
@@ -31,20 +31,19 @@ export default function MenuDrawer() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Função para controlar a abertura/fechamento do Drawer em dispositivos móveis
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  // Conteúdo do Drawer
   const drawer = (
     <Box sx={{ overflow: 'auto' }}>
       <List>
-        {[
+        {[ 
           { text: 'Início', icon: <HomeIcon />, path: '/' },
           { text: 'Minhas Turmas', icon: <ClassIcon />, path: '/turmas' },
-          { text: 'Criar Alunos', icon: <PersonAddIcon />, path: '/alunos' },
-          { text: 'Criar Salas', icon: <MeetingRoomIcon />, path: '/salas' },
+          { text: 'Criar Alunos', icon: <PersonAddIcon />, path: '/criar-alunos' },
+          { text: 'Criar Salas', icon: <MeetingRoomIcon />, path: '/criar-salas' },
+          { text: 'Configurações', icon: <SettingsIcon />, path: '/configuracoes' },
         ].map((item) => (
           <ListItem button key={item.text} onClick={() => { navigate(item.path); if (isMobile) setMobileOpen(false); }}>
             <ListItemIcon sx={{ color: '#5922A0' }}>
@@ -55,44 +54,20 @@ export default function MenuDrawer() {
         ))}
       </List>
       <Divider />
-      <List>
-        <ListItem button onClick={() => { navigate('/configuracoes'); if (isMobile) setMobileOpen(false); }}>
-          <ListItemIcon sx={{ color: '#5922A0' }}>
-            <SettingsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Configurações" sx={{ color: '#5922A0' }} />
-        </ListItem>
-      </List>
     </Box>
   );
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{
-          zIndex: (theme) => theme.zIndex.drawer + 1,
-          backgroundColor: '#FFD105'
-        }}
-      >
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, backgroundColor: '#FFD105' }}>
         <Toolbar>
           {isMobile && (
-            <IconButton
-              color="inherit"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2 }}
-            >
+            <IconButton color="inherit" edge="start" onClick={handleDrawerToggle} sx={{ mr: 2 }}>
               <MenuIcon />
             </IconButton>
           )}
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ color: '#5922A0' }}
-          >
+          <Typography variant="h6" noWrap component="div" sx={{ color: '#5922A0' }}>
             Kingstown - Sala de Aula
           </Typography>
         </Toolbar>
@@ -107,14 +82,14 @@ export default function MenuDrawer() {
           [`& .MuiDrawer-paper`]: {
             width: drawerWidth,
             boxSizing: 'border-box',
-            backgroundColor: '#FFD105'
+            backgroundColor: '#FFD105',
           },
         }}
       >
         <Toolbar />
         {drawer}
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 4 }}> {/* Margem superior reduzida */}
         <Toolbar />
         {/* O conteúdo principal será renderizado aqui */}
       </Box>
