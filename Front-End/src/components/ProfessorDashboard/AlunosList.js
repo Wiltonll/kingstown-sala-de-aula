@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Box, List, ListItem, ListItemText, Button } from '@mui/material';
+import styles from './styles/AlunosList.module.css';
 
 const AlunosList = () => {
   // Mock de dados de alunos
@@ -20,16 +21,16 @@ const AlunosList = () => {
   };
 
   return (
-    <Box sx={{ padding: 2 }}>
-      <Typography variant="h4" gutterBottom>
+    <Box className={styles.container}>
+      <Typography className={styles.title} variant="h4">
         Lista de Alunos
       </Typography>
       <List>
         {alunos.map((aluno) => (
-          <ListItem key={aluno.id} secondaryAction={
+          <ListItem key={aluno.id} className={styles.listItem} secondaryAction={
             <>
-              <Button onClick={() => handleEdit(aluno.id)}>Editar</Button>
-              <Button onClick={() => handleDelete(aluno.id)}>Excluir</Button>
+              <Button className={styles.button} onClick={() => handleEdit(aluno.id)}>Editar</Button>
+              <Button className={styles.button} onClick={() => handleDelete(aluno.id)}>Excluir</Button>
             </>
           }>
             <ListItemText primary={aluno.nome} />

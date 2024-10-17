@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Box } from '@mui/material';
+import styles from './styles/Configuracoes.module.css';
 
 const Configuracoes = () => {
   const [horarioFuncionamento, setHorarioFuncionamento] = useState('');
@@ -12,8 +13,8 @@ const Configuracoes = () => {
   };
 
   return (
-    <Box sx={{ padding: 2 }}>
-      <Typography variant="h4" gutterBottom>
+    <Box className={styles.container}>
+      <Typography className={styles.title} variant="h4" gutterBottom>
         Configurações
       </Typography>
       <form onSubmit={handleSubmit}>
@@ -21,7 +22,7 @@ const Configuracoes = () => {
           label="Horário de Funcionamento"
           variant="outlined"
           fullWidth
-          margin="normal"
+          className={styles.formField}
           value={horarioFuncionamento}
           onChange={(e) => setHorarioFuncionamento(e.target.value)}
           required
@@ -30,12 +31,12 @@ const Configuracoes = () => {
           label="Contato"
           variant="outlined"
           fullWidth
-          margin="normal"
+          className={styles.formField}
           value={contato}
           onChange={(e) => setContato(e.target.value)}
           required
         />
-        <Button variant="contained" color="primary" type="submit">
+        <Button className={styles.submitButton} variant="contained" color="primary" type="submit">
           Atualizar Configurações
         </Button>
       </form>

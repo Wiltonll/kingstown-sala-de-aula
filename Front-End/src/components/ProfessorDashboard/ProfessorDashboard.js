@@ -8,6 +8,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import ClassIcon from '@mui/icons-material/Class';
 import { useTheme } from '@mui/material/styles';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import styles from './styles/ProfessorDashboard.module.css';
 
 const ProfessorDashboard = () => {
   const theme = useTheme();
@@ -26,47 +27,57 @@ const ProfessorDashboard = () => {
   ];
 
   return (
-    <Box sx={{ flexGrow: 1, p: 3 }}>
-      <Typography variant="h4" sx={{ mb: 3, color: '#5922A0' }}>
+    <Box className={styles.container}>
+      <Typography className={styles.title} variant="h4">
         Dashboard do Professor
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6} lg={4}>
-          <Card sx={{ backgroundColor: '#FFD105' }}>
+          <Card className={styles.card}>
             <CardContent>
               <Grid container spacing={2} alignItems="center">
                 <Grid item>
-                  <PeopleIcon sx={{ fontSize: 40, color: '#5922A0' }} />
+                  <PeopleIcon className={styles.cardIcon} />
                 </Grid>
                 <Grid item>
-                  <Typography variant="h6" sx={{ color: '#5922A0' }}>Total de Alunos</Typography>
-                  <Typography variant="h4" sx={{ color: '#5922A0' }}>{totalAlunos}</Typography>
+                  <Typography variant="h6" className={styles.cardTitle}>
+                    Total de Alunos
+                  </Typography>
+                  <Typography variant="h4" className={styles.cardTitle}>
+                    {totalAlunos}
+                  </Typography>
                 </Grid>
               </Grid>
             </CardContent>
           </Card>
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
-          <Card sx={{ backgroundColor: '#FFD105' }}>
+          <Card className={styles.card}>
             <CardContent>
               <Grid container spacing={2} alignItems="center">
                 <Grid item>
-                  <ClassIcon sx={{ fontSize: 40, color: '#5922A0' }} />
+                  <ClassIcon className={styles.cardIcon} />
                 </Grid>
                 <Grid item>
-                  <Typography variant="h6" sx={{ color: '#5922A0' }}>Total de Salas</Typography>
-                  <Typography variant="h4" sx={{ color: '#5922A0' }}>{totalSalas}</Typography>
+                  <Typography variant="h6" className={styles.cardTitle}>
+                    Total de Salas
+                  </Typography>
+                  <Typography variant="h4" className={styles.cardTitle}>
+                    {totalSalas}
+                  </Typography>
                 </Grid>
               </Grid>
             </CardContent>
           </Card>
         </Grid>
 
-        {/* Novo Gráfico */}
+
         <Grid item xs={12}>
-          <Card sx={{ backgroundColor: '#FFD105', p: 2 }}>
-            <CardContent>
-              <Typography variant="h6" sx={{ mb: 2, color: '#5922A0' }}>Evolução de Alunos</Typography>
+          <Card className={styles.card} sx={{ p: 2 }}>
+            <CardContent className={styles.chartCard}>
+              <Typography variant="h6" className={styles.chartTitle}>
+                Evolução de Alunos
+              </Typography>
               <LineChart width="100%" height={300} data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />

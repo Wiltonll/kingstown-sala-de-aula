@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography, Card, CardContent, Grid, Avatar, Button } from '@mui/material';
+import styles from './styles/TurmasList.module.css';
 
 const aulas = [
   { id: 1, title: 'Inglês Avançado', description: 'Aperfeiçoamento em gramática e conversação' },
@@ -10,29 +11,16 @@ const aulas = [
 
 const InicioTurmas = () => {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingLeft: '16px' }}> {/* Alinhamento centralizado */}
-      <Typography variant="h4" sx={{ color: '#5922A0', textAlign: 'center', marginBottom: 2 }}>
+    <Box className={styles.container}>
+      <Typography variant="h4" className={styles.title}>
         Minhas Turmas
       </Typography>
-      <Grid container spacing={2} sx={{ marginLeft: '-16px' }}> {/* Margem negativa */}
+      <Grid container spacing={2} className={styles.gridContainer}>
         {aulas.map((aula) => (
           <Grid item key={aula.id} xs={12} sm={6} md={4}>
-            <Card 
-              sx={{ 
-                width: '100%', 
-                height: '200px', 
-                display: 'flex', 
-                flexDirection: 'column', 
-                justifyContent: 'center', 
-                backgroundColor: '#FFD105', 
-                color: '#5922A0', 
-                borderRadius: 2, 
-                boxShadow: 3, 
-                marginBottom: '16px' 
-              }}
-            >
+            <Card className={styles.card}>
               <CardContent>
-                <Avatar sx={{ backgroundColor: '#5922A0', mb: 2 }}>
+                <Avatar className={styles.avatar}>
                   <Typography variant="h6">{aula.title.charAt(0)}</Typography>
                 </Avatar>
                 <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
@@ -40,7 +28,7 @@ const InicioTurmas = () => {
                 </Typography>
                 <Typography variant="body2">{aula.description}</Typography>
               </CardContent>
-              <Button size="small" variant="contained" sx={{ backgroundColor: '#5922A0', color: '#fff', margin: '8px' }}>
+              <Button size="small" variant="contained" className={styles.button}>
                 Ver Detalhes
               </Button>
             </Card>

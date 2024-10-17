@@ -1,0 +1,17 @@
+.container {
+    padding: 24px; /* Padding igual a sx={{ padding: 3 }} */
+}
+
+.title {
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.formField {
+    margin: 12px 0; /* Margem igual a margin="normal" */
+}
+
+.createButton {
+    margin-top: 16px; /* Margem superior para o botão */
+}
