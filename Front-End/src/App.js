@@ -1,20 +1,33 @@
+// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import Settings from './pages/Settings';
-import Sidenav from './components/Sidenav'; // Importe o componente de barra lateral aqui
-import CriarTurmaPage from './components/CriarTurma'; // Importe a página de criação de turma aqui
-import Form from '../src/components/Form';
-import Form2 from './components/Form2';
+import MenuDrawer from './components/MenuDrawer'; 
+import InicioTurmas from './components/InicioTurmas/InicioTurmas'; 
+import CriarAlunos from './components/ProfessorDashboard/CriarAlunos'; 
+import CriarSalas from './components/ProfessorDashboard/CriarSalas'; 
+import Configuracoes from './components/ProfessorDashboard/Configuracoes'; 
+import AlunosList from './components/ProfessorDashboard/AlunosList'; 
+import TurmasList from './components/ProfessorDashboard/TurmasList'; 
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Form2 />} />
-        <Route path="/sidenav" element={<Sidenav />} />
-      </Routes>
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <MenuDrawer />
+        <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8 }}>
+          <Routes>
+            <Route path="/" element={<InicioTurmas />} />
+            <Route path="/criar-alunos" element={<CriarAlunos />} />
+            <Route path="/criar-salas" element={<CriarSalas />} />
+            <Route path="/configuracoes" element={<Configuracoes />} />
+            <Route path="/alunos" element={<AlunosList />} />
+            <Route path="/turmas" element={<TurmasList />} />
+          </Routes>
+        </Box>
+      </Box>
     </Router>
   );
 }
