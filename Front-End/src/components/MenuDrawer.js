@@ -21,6 +21,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import DashboardIcon from '@mui/icons-material/Dashboard'; 
 
 const drawerWidth = 240; 
 
@@ -42,6 +43,7 @@ export default function MenuDrawer() {
           { text: 'Minhas Turmas', icon: <ClassIcon />, path: '/turmas' },
           { text: 'Criar Alunos', icon: <PersonAddIcon />, path: '/criar-alunos' },
           { text: 'Criar Salas', icon: <MeetingRoomIcon />, path: '/criar-salas' },
+          { text: 'Dashboard do Professor', icon: <DashboardIcon />, path: '/professor-dashboard' }, 
           { text: 'Configurações', icon: <SettingsIcon />, path: '/configuracoes' },
         ].map((item) => (
           <ListItem button key={item.text} onClick={() => { navigate(item.path); if (isMobile) setMobileOpen(false); }}>
@@ -88,7 +90,7 @@ export default function MenuDrawer() {
         <Toolbar />
         {drawer}
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 4 }}> {/* Margem superior reduzida */}
+      <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 4 }}>
         <Toolbar />
         {/* O conteúdo principal será renderizado aqui */}
       </Box>

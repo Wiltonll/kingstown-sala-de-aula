@@ -1,0 +1,31 @@
+.container {
+    padding: 24px; /* p: 3 corresponde a 24px */
+}
+
+.title {
+    margin-bottom: 24px; /* mb: 3 corresponde a 24px */
+    color: #5922a0; /* Cor do título */
+    font-size: 32px; /* variant="h4" */
+}
+
+.card {
+    background-color: #ffd105; /* Cor de fundo dos cards */
+}
+
+.cardTitle {
+    color: #5922a0; /* Cor do título dentro do card */
+}
+
+.cardIcon {
+    font-size: 40px; /* Tamanho do ícone */
+    color: #5922a0; /* Cor do ícone */
+}
+
+.chartCard {
+    padding: 16px; /* Padding do card do gráfico */
+}
+
+.chartTitle {
+    margin-bottom: 16px; /* mb: 2 corresponde a 16px */
+    color: #5922a0; /* Cor do título do gráfico */
+}

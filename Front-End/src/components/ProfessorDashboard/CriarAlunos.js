@@ -1,32 +1,33 @@
 import React from 'react';
 import { TextField, Button, Box, Typography } from '@mui/material';
+import styles from './styles/CriarAlunos.module.css';
 
 const CriarAlunos = () => {
     return (
-        <Box sx={{ padding: 3 }}>
-            <Typography variant="h4" component="h1" gutterBottom>
+        <Box className={styles.container}>
+            <Typography className={styles.title} variant="h4" component="h1" gutterBottom>
                 Criar Alunos
             </Typography>
             <Box component="form" noValidate autoComplete="off">
                 <TextField
+                    className={styles.formField}
                     label="Nome do Aluno"
                     variant="outlined"
                     fullWidth
-                    margin="normal"
                 />
                 <TextField
+                    className={styles.formField}
                     label="Email do Aluno"
                     variant="outlined"
                     fullWidth
-                    margin="normal"
                 />
                 <TextField
+                    className={styles.formField}
                     label="Idade do Aluno"
                     variant="outlined"
                     fullWidth
-                    margin="normal"
                 />
-                <Button variant="contained" color="primary">
+                <Button className={styles.createButton} variant="contained" color="primary">
                     Criar Aluno
                 </Button>
             </Box>

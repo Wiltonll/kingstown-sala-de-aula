@@ -1,0 +1,17 @@
+.container {
+    padding: 16px;
+}
+
+.title {
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.formField {
+    margin: 12px 0;
+}
+
+.submitButton {
+    margin-top: 16px;
+}

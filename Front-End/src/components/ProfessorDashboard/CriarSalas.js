@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Box } from '@mui/material';
+import styles from './styles/CriarSalas.module.css';
 
 const CriarSalas = () => {
   const [nomeSala, setNomeSala] = useState('');
@@ -13,40 +14,40 @@ const CriarSalas = () => {
   };
 
   return (
-    <Box sx={{ padding: 2 }}>
-      <Typography variant="h4" gutterBottom>
+    <Box className={styles.container}>
+      <Typography className={styles.title} variant="h4" gutterBottom>
         Criar Sala
       </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
+          className={styles.formField}
           label="Nome da Sala"
           variant="outlined"
           fullWidth
-          margin="normal"
           value={nomeSala}
           onChange={(e) => setNomeSala(e.target.value)}
           required
         />
         <TextField
+          className={styles.formField}
           label="Capacidade"
           variant="outlined"
           fullWidth
-          margin="normal"
           type="number"
           value={capacidade}
           onChange={(e) => setCapacidade(e.target.value)}
           required
         />
         <TextField
+          className={styles.formField}
           label="Dias/Horários"
           variant="outlined"
           fullWidth
-          margin="normal"
           value={horario}
           onChange={(e) => setHorario(e.target.value)}
           required
         />
-        <Button variant="contained" color="primary" type="submit">
+        <Button className={styles.createButton} variant="contained" color="primary" type="submit">
           Criar Sala
         </Button>
       </form>
