@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 export const MyContext = createContext();
 
 export const MyProvider = ({ children }) => {
-    const [state, setState] = useState(/* valor inicial */);
+    const [state, setState] = useState();
 
     return (
         <MyContext.Provider value={{ state, setState }}>

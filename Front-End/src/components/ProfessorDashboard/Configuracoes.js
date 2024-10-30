@@ -8,7 +8,6 @@ const Configuracoes = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Lógica para enviar os dados para o backend ou atualizar o estado
     console.log('Configurações Atualizadas:', { horarioFuncionamento, contato });
   };
 
