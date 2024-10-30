@@ -92,7 +92,7 @@ export default function MenuDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 4 }}>
         <Toolbar />
-        {/* O conteúdo principal será renderizado aqui */}
+        {}
       </Box>
     </Box>
   );

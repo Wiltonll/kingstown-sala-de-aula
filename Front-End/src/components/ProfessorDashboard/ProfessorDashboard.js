@@ -16,7 +16,6 @@ const ProfessorDashboard = () => {
   const totalAlunos = 50;
   const totalSalas = 10;
 
-  // Dados para o gráfico
   const data = [
     { name: 'Jan', alunos: 30 },
     { name: 'Fev', alunos: 40 },

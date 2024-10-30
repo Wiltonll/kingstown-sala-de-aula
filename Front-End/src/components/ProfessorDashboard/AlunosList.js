@@ -3,20 +3,17 @@ import { Typography, Box, List, ListItem, ListItemText, Button } from '@mui/mate
 import styles from './styles/AlunosList.module.css';
 
 const AlunosList = () => {
-  // Mock de dados de alunos
   const alunos = [
-    { id: 1, nome: 'João Silva' },
-    { id: 2, nome: 'Maria Oliveira' },
-    { id: 3, nome: 'Carlos Santos' },
+    { id: 1, nome: 'José Henrique' },
+    { id: 2, nome: 'João Paulo' },
+    { id: 3, nome: 'Felipe Alves' },
   ];
 
   const handleEdit = (id) => {
-    // Lógica para editar aluno
     console.log('Editar Aluno com ID:', id);
   };
 
   const handleDelete = (id) => {
-    // Lógica para excluir aluno
     console.log('Excluir Aluno com ID:', id);
   };
 

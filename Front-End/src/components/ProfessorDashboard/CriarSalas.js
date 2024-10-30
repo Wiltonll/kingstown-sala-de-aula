@@ -9,7 +9,6 @@ const CriarSalas = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Lógica para enviar os dados para o backend ou atualizar o estado
     console.log('Sala Criada:', { nomeSala, capacidade, horario });
   };
 

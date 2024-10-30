@@ -13,16 +13,11 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Exibir um alerta com os dados (remova ou altere conforme necessário)
     alert("Enviando os dados: " + username + " - " + password);
 
-    // Aqui pode adicionar a lógica de autenticação
-    // Por exemplo, verificar se os dados estão corretos.
-
-    // Se a autenticação for bem-sucedida, redirecionar para 'InicioTurmas'
     navigate('/inicio-turmas');
 
-    // Apenas para depuração
+    
     console.log("Teste", username, password);
     console.log("Envio");
   };
