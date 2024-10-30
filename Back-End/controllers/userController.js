@@ -1,10 +1,11 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
+require('dotenv').config();
 
 async function postUser(req, res) {
     try {
-        const { nome, email, senha, confirmarsenha } = req.body;
+        const { nome, email, senha, confirmarsenha, role } = req.body;
 
         //Validations
         if (!nome) {
@@ -31,13 +32,15 @@ async function postUser(req, res) {
         const salt = await bcrypt.genSalt(12)
         const senhaHash = await bcrypt.hash(senha, salt)
 
+        // Define o cargo, se não for especificado, usa o padrão 'user'
+        const newUserRole = role === "admin" ? "admin" : "user";
 
-        //Create New User
         const newUser = await User.create({
             nome,
             email,
             senha: senhaHash,
-        })
+            role: newUserRole
+        });
         res.status(201).json(newUser)
     } catch (error) {
         res.status(400).json({ error: 'Erro ao criar usuario' })
@@ -68,11 +71,14 @@ async function putUser(req, res){
             return res.status(400).json({ msg: 'Usuário não encontrado'});
         }
 
+        const salt = await bcrypt.genSalt(12)
+        const senhaHash = await bcrypt.hash(senha, salt)
+
         //Updated user
         const atualizado = await User.update({
             nome, 
             email, 
-            senha
+            senha: senhaHash
         },{
             where: { id }
         }); 
@@ -119,15 +125,19 @@ async function login(req, res) {
             return res.status(400).json({ msg: 'E-mail ou senha incorretos' })
         }
 
+        // Compara a senha fornecida com a senha armazenada
         const senhaValida = await bcrypt.compare(senha, user.senha);
 
         if (!senhaValida) {
             return res.status(400).json({ msg: 'Usuário ou senha incorretos' })
-        }
+        }   
 
-        const token = jwt.sign({ id: user.id }, 'seu_segredo_jwt', {expiresIn: '1h' })
+        const token = jwt.sign(
+            { id: user.id, role: user.role },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
         res.status(200).json({ msg: 'Login realizado com sucesso', token })
-        localStorage.setItem('authToken', token)
     } catch (error) {
         res.status(500).json({ msg: 'Erro no server' });
         console.log(error);
