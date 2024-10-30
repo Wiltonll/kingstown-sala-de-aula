@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MenuDrawer from './components/MenuDrawer'; 
 import ProfessorDashboard from './components/ProfessorDashboard/ProfessorDashboard';
 import InicioTurmas from './components/InicioTurmas/InicioTurmas'; 
+import Login from './components/Login/Login';
 import CriarAlunos from './components/ProfessorDashboard/CriarAlunos'; 
 import CriarSalas from './components/ProfessorDashboard/CriarSalas'; 
 import Configuracoes from './components/ProfessorDashboard/Configuracoes'; 
@@ -11,28 +12,31 @@ import TurmasList from './components/ProfessorDashboard/TurmasList';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { MyProvider } from './context'; 
+import PrivateRoute from '../src/auth/PrivateRoute';
+import { AuthProvider } from './auth/AuthContext';
+
 
 function App() {
   return (
-    <MyProvider> 
+    <AuthProvider> 
       <Router>
-        <Box sx={{ display: 'flex' }}>
-          <CssBaseline />
-          <MenuDrawer />
-          <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8 }}>
-            <Routes>
-              <Route path="/" element={<InicioTurmas />} />
-              <Route path="/professor-dashboard" element={<ProfessorDashboard />} />
-              <Route path="/criar-alunos" element={<CriarAlunos />} />
-              <Route path="/criar-salas" element={<CriarSalas />} />
-              <Route path="/configuracoes" element={<Configuracoes />} />
-              <Route path="/alunos" element={<AlunosList />} />
-              <Route path="/turmas" element={<TurmasList />} />
-            </Routes>
-          </Box>
-        </Box>
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
+
+          <Route path="/login" element={<Login />} />
+          
+          {/* Rotas protegidas por tipo de usuário */}
+          <Route
+            path="/admin-dashboard"
+            element={<PrivateRoute><ProfessorDashboard /></PrivateRoute>}
+          />
+          <Route
+            path="/user-dashboard"
+            element={<PrivateRoute><InicioTurmas /></PrivateRoute>}
+          />
+        </Routes>
       </Router>
-    </MyProvider>
+    </AuthProvider>
   );
 }
 
