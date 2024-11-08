@@ -10,9 +10,9 @@ function PrivateRoute({ children }) {
   useEffect(() => {
     if (user) {
       if (user.role === 'admin') {
-        navigate('/admin-dashboard');
+        navigate('/home-admin');
       } else if (user.role === 'user') {
-        navigate('/user-dashboard');
+        navigate('/home-user');
       } 
     }
   }, [user, navigate]);

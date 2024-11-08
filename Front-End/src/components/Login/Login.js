@@ -27,12 +27,10 @@ function Login() {
         setUser(userData);
 
         if (userData.role === 'admin') {
-          navigate('/admin-dashboard');
+          navigate('/home-admin');
         } else if (userData.role === 'user') {
-          navigate('/user-dashboard');
-        } else {
-          navigate('/default-dashboard');
-        }
+          navigate('/home-user');
+        } 
       } else {
         setError(data.msg);
       }

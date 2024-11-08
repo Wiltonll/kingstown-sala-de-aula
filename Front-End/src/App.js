@@ -1,17 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import MenuDrawer from './components/MenuDrawer'; 
-import ProfessorDashboard from './components/ProfessorDashboard/ProfessorDashboard';
-import InicioTurmas from './components/InicioTurmas/InicioTurmas'; 
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; 
 import Login from './components/Login/Login';
-import CriarAlunos from './components/ProfessorDashboard/CriarAlunos'; 
-import CriarSalas from './components/ProfessorDashboard/CriarSalas'; 
-import Configuracoes from './components/ProfessorDashboard/Configuracoes'; 
-import AlunosList from './components/ProfessorDashboard/AlunosList'; 
-import TurmasList from './components/ProfessorDashboard/TurmasList'; 
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import { MyProvider } from './context'; 
+import TelaProfessor from './components/TelaProfessor/TelaProfessor'
+import TelaAluno from './components/TelaAluno/TelaAluno'
 import PrivateRoute from '../src/auth/PrivateRoute';
 import { AuthProvider } from './auth/AuthContext';
 
@@ -27,12 +18,12 @@ function App() {
           
           {/* Rotas protegidas por tipo de usuário */}
           <Route
-            path="/admin-dashboard"
-            element={<PrivateRoute><ProfessorDashboard /></PrivateRoute>}
+            path="/home-admin"
+            element={<PrivateRoute><TelaProfessor /></PrivateRoute>}
           />
           <Route
-            path="/user-dashboard"
-            element={<PrivateRoute><InicioTurmas /></PrivateRoute>}
+            path="/home-user"
+            element={<PrivateRoute><TelaAluno /></PrivateRoute>}
           />
         </Routes>
       </Router>
