@@ -25,25 +25,13 @@ const TurmaAluno = sequelize.define('TurmaAluno', {
             key: 'id',
         },
     },
-    nome_turma: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    nome_aluno: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    }
 }, {
     tableName: 'turmaAluno',
     timestamps: false
 });
 
-// Relacionamento entre TurmaAluno e Turma (Turma pode ter muitos TurmaAluno)
 Turma.hasMany(TurmaAluno, { foreignKey: 'turma_id' });
-// Relacionamento entre TurmaAluno e User (Aluno pode estar em muitas Turmas)
 User.hasMany(TurmaAluno, { foreignKey: 'aluno_id' });
-
-// Relacionamento inverso de TurmaAluno para Turma e User
 TurmaAluno.belongsTo(Turma, { foreignKey: 'turma_id' });
 TurmaAluno.belongsTo(User, { foreignKey: 'aluno_id' });
 

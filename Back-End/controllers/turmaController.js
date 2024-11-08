@@ -67,8 +67,7 @@ async function deleteTurma(req, res) {
 
     try {
         // Verificar se a turma existe
-        const turma = await Turm
-        a.findOne({ where: { id } });
+        const turma = await Turma.findOne({ where: { id } });
         if (!turma) {
             return res.status(404).json({ error: 'Turma não encontrada' });
         }
@@ -82,43 +81,35 @@ async function deleteTurma(req, res) {
 };
 
 async function addAluno(req, res) {
-    const { aluno_id, turma_id } = req.body; // Os dados devem vir do corpo da requisição
+    const { turma_id, email } = req.body; // Os dados devem vir do corpo da requisição
 
     try {
         // Verificar se a turma existe
-        const turma = await Turma.findByPk(turma_id);
+        const turma = await Turma.findOne({ where: { id: turma_id } });
         if (!turma) {
             return res.status(404).json({ error: 'Turma não encontrada' });
         }
 
         // Verificar se o aluno existe
-        const aluno = await User.findByPk(aluno_id);
+        const aluno = await User.findOne({ where: { email} });
         if (!aluno) {
             return res.status(404).json({ error: 'Aluno não encontrado' });
         }
 
+        const alunoExistenteNaTurma = await TurmaAluno.findOne({
+            where: { turma_id: turma.id, aluno_id: aluno.id },
+        });
+        if (alunoExistenteNaTurma) {
+            return res.status(400).json({ error: 'Aluno já está na turma' });
+        }
+
         // Adicionar o aluno à turma
-        const turmaAluno = await TurmaAluno.create({
+        await TurmaAluno.create({
             turma_id: turma.id,
             aluno_id: aluno.id
         });
 
-        // Obter os dados da turma e aluno com o nome (utilizando o `include` para fazer a junção)
-        const turmaAlunoDetalhado = await TurmaAluno.findOne({
-            where: { id: turmaAluno.id },  // Usar o id retornado pela criação
-            include: [
-                {
-                    model: Turma,
-                    attributes: ['nome'],  // Retornar o nome da turma
-                },
-                {
-                    model: User,
-                    attributes: ['nome'],  // Retornar o nome do aluno
-                }
-            ]
-        });
-
-        res.status(200).json({ message: 'Aluno adicionado à turma com sucesso', turmaAlunoDetalhado });
+        res.status(200).json({ message: `Aluno com email ${email} adicionado à turma ${turma.nome} com sucesso.` })
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao adicionar aluno à turma' });
