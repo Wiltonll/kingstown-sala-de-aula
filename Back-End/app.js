@@ -2,11 +2,20 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const sequelize = require('./infraestrutura/sequelize');
-const userRoute = require('./routes/userRouter');
+const userRouter = require('./routes/userRouter');
+const turmaRouter = require('./routes/turmaRouter')
+
+// Carregando os modelos antes de importar  
+require('./models/arquivoModel')
+require('./models/turmaAluno')
+require('./models/turmaCamposModel')
+require('./models/turmaModel')
+require('./models/userModel')
 
 app.use(express.json());
 app.use(cors());
-app.use('', userRoute)
+app.use('', userRouter)
+app.use('', turmaRouter)
 
 sequelize.sync() 
   .then(() => {

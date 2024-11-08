@@ -5,9 +5,9 @@ const verificarAdmin = require('../middlewares/verificaradmin');
 const router = express.Router();
 
 router.post('/login', login)
-router.get('/user', getUser);
+router.get('/user', verificarAdmin, getUser);
 router.post('/user', verificarAdmin, postUser);
-router.put('/user/:id', putUser);
-router.delete('/user/:id', deleteUser);
+router.put('/user/:id', verificarAdmin, putUser);
+router.delete('/user/:id', verificarAdmin, deleteUser);
 
 module.exports = router;
