@@ -21,7 +21,7 @@ const Arquivo = sequelize.define('Arquivo', {
         allowNull: false,
     },
     tipo: {
-        type: DataTypes.ENUM('video', 'link', 'pdf'),
+        type: DataTypes.ENUM('video', 'link', 'pdf', 'docx', 'excel', 'img', 'pptx'),
         allowNull: false,
     },
     url: {

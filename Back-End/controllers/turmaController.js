@@ -151,7 +151,7 @@ async function postArquivo(req, res) {
 
     try {
         // Verifica se a turma existe
-        const turma = await Turma.findByPk(turma_id);
+        const turma = await Turma.findOne({ where: { id: turma_id } });
         if (!turma) {
             return res.status(404).json({ error: 'Turma não encontrada' });
         }
@@ -173,11 +173,12 @@ async function postArquivo(req, res) {
 }
 
 async function getArquivo(req, res) {
-    const { turmaId } = req.params;
+    const { turma_id } = req.params;
 
     try {
         // Verificar se a turma existe
-        const turma = await Turma.findByPk(turmaId, {
+        const turma = await Turma.findOne({
+            where: { id: turma_id },
             include: [{ model: Arquivo, as: 'arquivos' }]
         });
 
@@ -193,12 +194,12 @@ async function getArquivo(req, res) {
 }
 
 async function putArquivo(req, res) {
-    const { arquivoId } = req.params;
+    const { arquivo_id } = req.params;
     const { nome, tipo, url } = req.body;
 
     try {
         // Verificar se o arquivo existe
-        const arquivo = await Arquivo.findByPk(arquivoId);
+        const arquivo = await Arquivo.findOne({where: {id: arquivo_id}});
         if (!arquivo) {
             return res.status(404).json({ error: 'Arquivo não encontrado' });
         }
@@ -218,11 +219,11 @@ async function putArquivo(req, res) {
 }
 
 async function deleteArquivo(req, res) {
-    const { arquivoId } = req.params;
+    const { arquivo_id } = req.params;
 
     try {
         // Verificar se o arquivo existe
-        const arquivo = await Arquivo.findByPk(arquivoId);
+        const arquivo = await Arquivo.findOne({where: {id: arquivo_id}});
         if (!arquivo) {
             return res.status(404).json({ error: 'Arquivo não encontrado' });
         }

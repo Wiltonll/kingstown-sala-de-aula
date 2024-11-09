@@ -18,6 +18,8 @@ app.use(cors());
 app.use('', userRouter)
 app.use('', turmaRouter)
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
 sequelize.sync() 
   .then(() => {
     console.log('Tabelas sincronizadas');

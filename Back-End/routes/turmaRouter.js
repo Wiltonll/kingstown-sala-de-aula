@@ -1,15 +1,18 @@
 const express = require('express');
 const { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, postArquivo, getArquivo, putArquivo, deleteArquivo } = require('../controllers/turmaController');
-const verificarAdmin = require('../middlewares/verificaradmin')
+const verificarAdmin = require('../middlewares/verificaradmin');
 
 const router = express.Router();
 
-router.post('/turma', verificarAdmin, postTurma)
-router.get('/turma', verificarAdmin, getTurma)
-router.put('/turma/:id', verificarAdmin, putTurma)
-router.delete('/turma/:id', verificarAdmin, deleteTurma)
-router.post('/adicionar', verificarAdmin, addAluno)
-router.delete('/remover', verificarAdmin, removeAluno)
-
+router.post('/turma', verificarAdmin, postTurma);
+router.get('/turma', verificarAdmin, getTurma);
+router.put('/turma/:id', verificarAdmin, putTurma);
+router.delete('/turma/:id', verificarAdmin, deleteTurma);
+router.post('/adicionar', verificarAdmin, addAluno);
+router.delete('/remover', verificarAdmin, removeAluno);
+router.post('/arquivo', verificarAdmin, postArquivo);
+router.get('/arquivo/:turma_id', verificarAdmin, getArquivo);
+router.put('/arquivo/:arquivo_id', verificarAdmin, putArquivo);
+router.delete('/arquivo/:arquivo_id', verificarAdmin, deleteArquivo);
 
 module.exports = router;
