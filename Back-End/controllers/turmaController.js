@@ -116,4 +116,35 @@ async function addAluno(req, res) {
     }
 }
 
-module.exports = { postTurma, getTurma, putTurma, deleteTurma, addAluno };
+async function removeAluno(req, res) {
+    const { turma_id, email } = req.body; // Os dados devem vir do corpo da requisição
+
+    try {
+        // Verificar se a turma existe
+        const turma = await Turma.findOne({ where: { id: turma_id } });
+        if (!turma) {
+            return res.status(404).json({ error: 'Turma não encontrada' });
+        }
+
+        // Verificar se o aluno existe
+        const aluno = await User.findOne({ where: { email} });
+        if (!aluno) {
+            return res.status(404).json({ error: 'Aluno não encontrado' });
+        }
+
+        const turmaAluno = await TurmaAluno.findOne({ where: { turma_id: turma.id, aluno_id: aluno.id } });
+        if (!turmaAluno) {
+            return res.status(404).json({ error: 'Associação entre aluno e turma não encontrada' });
+        }
+
+        // Remover o aluno da turma
+        await turmaAluno.destroy();
+
+        res.status(200).json({ message: `Aluno removido da turma com sucesso` })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao remover aluno à turma' });
+    }
+}
+
+module.exports = { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno };
