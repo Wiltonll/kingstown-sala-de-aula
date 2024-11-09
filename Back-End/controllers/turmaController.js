@@ -1,13 +1,10 @@
 const Turma = require('../models/turmaModel');
-const User = require('../models/userModel')
-const TurmaAluno = require('../models/turmaAluno')
+const User = require('../models/userModel');
+const Arquivo = require('../models/arquivoModel');
+const TurmaAluno = require('../models/turmaAluno');
 require('dotenv').config();
 
-const isProfessor = async (userId) => {
-    const user = await User.findByPk(userId);
-    return user && user.tipo === 'admin';
-};
-
+//Funções para Criar, listar, atualizar e deletar turmas
 async function postTurma(req, res) {
     const { nome, descricao, professor_id } = req.body;
 
@@ -80,6 +77,7 @@ async function deleteTurma(req, res) {
     }
 };
 
+//Funções para adicionar e remover alunos das turmas
 async function addAluno(req, res) {
     const { turma_id, email } = req.body; // Os dados devem vir do corpo da requisição
 
@@ -147,4 +145,95 @@ async function removeAluno(req, res) {
     }
 }
 
-module.exports = { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno };
+//Funções para Criar, Listar, Atualizar e Deletar Arquivos das turmas
+async function postArquivo(req, res) {
+    const { turma_id, nome, tipo, url } = req.body;
+
+    try {
+        // Verifica se a turma existe
+        const turma = await Turma.findByPk(turma_id);
+        if (!turma) {
+            return res.status(404).json({ error: 'Turma não encontrada' });
+        }
+
+        // Cria o novo arquivo associado à turma
+        const arquivo = await Arquivo.create({
+            turma_id,
+            nome,
+            tipo,
+            url,
+            data_upload: new Date(), // Registra a data do upload
+        });
+
+        res.status(201).json({ message: 'Arquivo adicionado com sucesso', arquivo });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao adicionar arquivo à turma' });
+    }
+}
+
+async function getArquivo(req, res) {
+    const { turmaId } = req.params;
+
+    try {
+        // Verificar se a turma existe
+        const turma = await Turma.findByPk(turmaId, {
+            include: [{ model: Arquivo, as: 'arquivos' }]
+        });
+
+        if (!turma) {
+            return res.status(404).json({ error: 'Turma não encontrada' });
+        }
+
+        res.status(200).json(turma.arquivos);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao listar arquivos' });
+    }
+}
+
+async function putArquivo(req, res) {
+    const { arquivoId } = req.params;
+    const { nome, tipo, url } = req.body;
+
+    try {
+        // Verificar se o arquivo existe
+        const arquivo = await Arquivo.findByPk(arquivoId);
+        if (!arquivo) {
+            return res.status(404).json({ error: 'Arquivo não encontrado' });
+        }
+
+        // Atualizar o arquivo com os novos dados
+        arquivo.nome = nome || arquivo.nome;
+        arquivo.tipo = tipo || arquivo.tipo;
+        arquivo.url = url || arquivo.url;
+
+        await arquivo.save();
+
+        res.status(200).json({ message: 'Arquivo atualizado com sucesso', arquivo });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao atualizar arquivo' });
+    }
+}
+
+async function deleteArquivo(req, res) {
+    const { arquivoId } = req.params;
+
+    try {
+        // Verificar se o arquivo existe
+        const arquivo = await Arquivo.findByPk(arquivoId);
+        if (!arquivo) {
+            return res.status(404).json({ error: 'Arquivo não encontrado' });
+        }
+
+        await arquivo.destroy();
+
+        res.status(200).json({ message: 'Arquivo removido com sucesso' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao remover arquivo' });
+    }
+}
+
+module.exports = { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, postArquivo, getArquivo, putArquivo, deleteArquivo };
