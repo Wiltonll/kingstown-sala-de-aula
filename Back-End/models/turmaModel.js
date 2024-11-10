@@ -28,7 +28,7 @@ const Turma = sequelize.define('Turma', {
 }, {
     tableName: 'turma',
     timestamps: false
-});
+}); 
 
 User.hasMany(Turma, { foreignKey: 'professor_id' });
 Turma.belongsTo(User, { foreignKey: 'professor_id' })

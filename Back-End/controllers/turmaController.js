@@ -2,6 +2,7 @@ const Turma = require('../models/turmaModel');
 const User = require('../models/userModel');
 const Arquivo = require('../models/arquivoModel');
 const TurmaAluno = require('../models/turmaAluno');
+const TurmaCampos = require('../models/turmaCamposModel')
 require('dotenv').config();
 
 //Funções para Criar, listar, atualizar e deletar turmas
@@ -237,4 +238,93 @@ async function deleteArquivo(req, res) {
     }
 }
 
-module.exports = { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, postArquivo, getArquivo, putArquivo, deleteArquivo };
+//Campos personalizados
+async function postCampo(req, res) {
+    const { turma_id, nome, tipo, conteudo } = req.body;
+
+    try {
+        const turma = await Turma.findOne({ where: { id: turma_id } });
+        if (!turma) {
+            return res.status(404).json({ error: 'Turma não encontrada' });
+        }
+
+        await TurmaCampos.create({
+            turma_id,
+            nome,
+            tipo,
+            conteudo,
+        });
+
+        res.status(201).json({ message: `O campo foi criado com sucesso`});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao criar campo' });
+    }
+}
+
+async function getCampos(req, res) {
+    const { turma_id } = req.params;
+
+    try {
+        const turma = await Turma.findOne({
+            where: { id: turma_id },
+            include: [{ model: TurmaCampos, as: 'campos', 
+            include: [{ model: Arquivo, as: 'arquivos' }] }],
+        });
+
+        if (!turma) {
+            return res.status(404).json({ error: 'Turma não encontrada' });
+        }
+
+        res.status(200).json(turma.campos);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao listar campos' });
+    }
+}
+
+async function putCampo(req, res) {
+    const { campo_id } = req.params;
+    const { nome, tipo, conteudo } = req.body;
+
+    try {
+        // Verificar se o campo existe
+        const campo = await TurmaCampos.findOne({ where: { id: campo_id } });
+        if (!campo) {
+            return res.status(404).json({ error: 'Campo não encontrado' });
+        }
+
+        // Atualizar o campo com os novos dados
+        campo.nome = nome || campo.nome;
+        campo.tipo = tipo || campo.tipo;
+        campo.conteudo = conteudo || campo.conteudo;
+
+        await campo.save();
+
+        res.status(200).json({ message: 'Campo atualizado com sucesso', campo });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao atualizar campo' });
+    }
+}
+
+async function deleteCampo(req, res) {
+    const { campo_id } = req.params;
+
+    try {
+        // Verificar se o campo existe
+        const campo = await TurmaCampos.findOne({ where: { id: campo_id } });
+        if (!campo) {
+            return res.status(404).json({ error: 'Campo não encontrado' });
+        }
+
+        await campo.destroy();
+
+        res.status(200).json({ message: 'Campo removido com sucesso' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao remover campo' });
+    }
+}
+
+module.exports = { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, postArquivo, getArquivo, putArquivo, deleteArquivo, postCampo, getCampos, putCampo, deleteCampo };

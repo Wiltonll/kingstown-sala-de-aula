@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../infraestrutura/sequelize');
 const Turma = require('./turmaModel');
+const Arquivo = require('./arquivoModel');
 
 const TurmaCampos = sequelize.define('TurmaCampos', {
     id: {
@@ -16,6 +17,10 @@ const TurmaCampos = sequelize.define('TurmaCampos', {
           key: 'id',
         }
     },
+    nome: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+    },
     tipo: {
         type: DataTypes.STRING(50),
         allowNull: false,
@@ -29,7 +34,9 @@ const TurmaCampos = sequelize.define('TurmaCampos', {
     timestamps: false  
 });
 
-Turma.hasMany(TurmaCampos, { foreignKey: 'turma_id'});
-TurmaCampos.belongsTo(Turma, {foreignKey: 'turma_id'});
+Turma.hasMany(TurmaCampos, { foreignKey: 'turma_id', as: 'campos' });
+TurmaCampos.belongsTo(Turma, { foreignKey: 'turma_id', as: 'turma' });
+TurmaCampos.hasMany(Arquivo, { foreignKey: 'campo_id', as: 'arquivos' });
+Arquivo.belongsTo(TurmaCampos, { foreignKey: 'campo_id', as: 'campo' });
 
 module.exports = TurmaCampos;
