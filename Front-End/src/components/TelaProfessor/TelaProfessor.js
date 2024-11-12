@@ -14,7 +14,7 @@ import { MyProvider } from '../../context';
 
 function TelaProfessor() {
     return (
-      <MyProvider> 
+      <MyProvider>  
       <Router>
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
