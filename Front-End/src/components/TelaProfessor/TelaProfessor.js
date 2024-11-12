@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import MenuDrawer from '../MenuDrawer'; 
+import MenuDrawer from './MenuDrawer'; 
 import ProfessorDashboard from '../ProfessorDashboard/ProfessorDashboard';
 import InicioTurmas from '../InicioTurmas/InicioTurmas'; 
 import CriarAlunos from '../ProfessorDashboard/CriarAlunos'; 
@@ -31,7 +31,6 @@ function TelaProfessor() {
             </Routes>
           </Box>
         </Box>
-      </Router>
     </MyProvider>
     );
   }
