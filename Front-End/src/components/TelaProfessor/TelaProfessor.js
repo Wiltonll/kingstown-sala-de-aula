@@ -15,7 +15,6 @@ import { MyProvider } from '../../context';
 function TelaProfessor() {
     return (
       <MyProvider> 
-      <Router>
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
           <MenuDrawer />
@@ -31,7 +30,6 @@ function TelaProfessor() {
             </Routes>
           </Box>
         </Box>
-      </Router>
     </MyProvider>
     );
   }
