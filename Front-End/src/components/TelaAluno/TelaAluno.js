@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import MenuDrawerA from '../MenuDrawerA'; 
+import MenuDrawerA from './MenuDrawerA';
 import InicioTurmas from '../InicioTurmas/InicioTurmas'; 
 import Configuracoes from '../ProfessorDashboard/Configuracoes'; 
 import AlunosList from '../ProfessorDashboard/AlunosList'; 
