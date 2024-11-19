@@ -1,15 +1,82 @@
 .container {
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    position: relative;  
-  }
-  
-  .logo {
-    width: 900px; 
-    height: 500px;
-    opacity: 0.3; 
-    position: absolute; 
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 10px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #4a148c;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* No máximo 3 colunas */
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center; /* Centraliza os botões */
+  box-sizing: border-box;
+}
+
+.card {
+  position: relative;
+  color: #fff;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: left;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #4a148c;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+  margin-left: 0px;
+  margin-top: 20px;
+  padding-top: 15px;
+}
+
+.nome {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #4a148c;
+}
+
+.descricao {
+  font-size: 1rem;
+  color: #4a148c;
+  margin-top: 10px;
+  text-align: start;
+}
