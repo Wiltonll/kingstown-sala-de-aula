@@ -125,8 +125,8 @@ export default function MenuDrawer() {
               <MenuIcon />
             </IconButton>
           )}
-          <Typography variant="h6" noWrap component="div" sx={{ color: '#5922A0' }}>
-            Kingstown - Sala de Aula
+          <Typography variant="h5" noWrap component="div" sx={{ color: '#5922A0' }}>
+            Kingstown College - Sala de Aula
           </Typography>
         </Toolbar>
       </AppBar>
