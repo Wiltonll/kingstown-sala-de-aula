@@ -14,7 +14,7 @@ import MenuDrawer from './components/TelaProfessor/MenuDrawer';
 
 function App() {
   return (
-    <TelaAluno/>
+    <TelaProfessor/>
     // <AuthProvider> 
     //   <Router>
     //     <Routes>
