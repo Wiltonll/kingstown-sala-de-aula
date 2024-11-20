@@ -12,7 +12,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import HomeIcon from '@mui/icons-material/Home';
-import ClassIcon from '@mui/icons-material/Class';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -85,7 +84,6 @@ export default function MenuDrawer() {
       >
         {[
           { text: 'Início', icon: <HomeIcon />, path: '/' },
-          { text: 'Minhas Turmas', icon: <ClassIcon />, path: '/turmas' },
           { text: 'Criar Alunos', icon: <PersonAddIcon />, path: '/criar-alunos' },
           { text: 'Criar Salas', icon: <MeetingRoomIcon />, path: '/criar-salas' },
           { text: 'Dashboard do Professor', icon: <DashboardIcon />, path: '/professor-dashboard' },

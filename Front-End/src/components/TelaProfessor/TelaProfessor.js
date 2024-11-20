@@ -7,7 +7,6 @@ import CriarAlunos from '../ProfessorDashboard/CriarAlunos';
 import CriarSalas from '../ProfessorDashboard/CriarSalas';
 import Configuracoes from '../ProfessorDashboard/Configuracoes';
 import AlunosList from '../ProfessorDashboard/AlunosList';
-import TurmasList from '../ProfessorDashboard/TurmasList';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { MyProvider } from '../../context';
@@ -27,7 +26,6 @@ function TelaProfessor() {
               <Route path="/criar-salas" element={<CriarSalas />} />
               <Route path="/configuracoes" element={<Configuracoes />} />
               <Route path="/alunos" element={<AlunosList />} />
-              <Route path="/turmas" element={<TurmasList />} />
             </Routes>
           </Box>
         </Box>
