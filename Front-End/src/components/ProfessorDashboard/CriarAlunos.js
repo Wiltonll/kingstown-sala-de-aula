@@ -1,14 +1,41 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Box, Paper } from '@mui/material';
+const token = localStorage.getItem('token');
 
 const CriarAlunos = () => {
   const [nomeAluno, setNomeAluno] = useState('');
   const [emailAluno, setEmailAluno] = useState('');
   const [senhaAluno, setSenhaAluno] = useState('');
+  const [confirmarSenha, setConfirmarSenha] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Aluno Criado com sucesso:', { nomeAluno, emailAluno, senhaAluno });
+
+    try {
+      const response = await fetch('http://localhost:3000/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          nome: nomeAluno,
+          email: emailAluno,
+          senha: senhaAluno,
+          confirmarsenha: confirmarSenha,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert('Aluno criado com sucesso');
+      } else {
+        alert(data.msg || 'Erro ao criar aluno');
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      alert('Erro ao criar aluno');
+    }
   };
 
   return (
@@ -81,7 +108,7 @@ const CriarAlunos = () => {
             variant="outlined"
             fullWidth
             margin="normal"
-            type="number"
+            type="email"
             value={emailAluno}
             onChange={(e) => setEmailAluno(e.target.value)}
             required
@@ -109,12 +136,45 @@ const CriarAlunos = () => {
             }}
           />
           <TextField
-            label="Senha para o email"
+            label="Senha"
             variant="outlined"
             fullWidth
             margin="normal"
+            type='password'
             value={senhaAluno}
             onChange={(e) => setSenhaAluno(e.target.value)}
+            required
+            sx={{
+              // Define a cor do rótulo
+              '& .MuiInputLabel-root': {
+                color: '#5922A0',
+              },
+              // Define a cor do rótulo quando focado
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#5922A0',
+              },
+              // Configura o contorno do campo
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#5922A0', // Borda inicial
+                },
+                '&:hover fieldset': {
+                  borderColor: '#7E57C2', // Borda ao passar o mouse
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#5922A0', // Borda quando focado
+                },
+              },
+            }}
+          />
+          <TextField
+            label="Confirmar senha"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            type='password'
+            value={confirmarSenha}
+            onChange={(e) => setConfirmarSenha(e.target.value)}
             required
             sx={{
               // Define a cor do rótulo

@@ -13,7 +13,6 @@ import { MyProvider } from '../../context';
 function TelaAluno() {
     return (
       <MyProvider> 
-      <Router>
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
           <MenuDrawerA />
@@ -27,7 +26,6 @@ function TelaAluno() {
             </Routes>
           </Box>
         </Box>
-      </Router>
     </MyProvider>
     );
   }

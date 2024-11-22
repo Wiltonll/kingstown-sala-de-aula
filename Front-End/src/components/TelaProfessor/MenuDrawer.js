@@ -83,11 +83,11 @@ export default function MenuDrawer() {
         }}
       >
         {[
-          { text: 'Início', icon: <HomeIcon />, path: '/' },
-          { text: 'Criar Alunos', icon: <PersonAddIcon />, path: '/criar-alunos' },
-          { text: 'Criar Salas', icon: <MeetingRoomIcon />, path: '/criar-salas' },
-          { text: 'Dashboard do Professor', icon: <DashboardIcon />, path: '/professor-dashboard' },
-          { text: 'Configurações', icon: <SettingsIcon />, path: '/configuracoes' },
+          { text: 'Início', icon: <HomeIcon />, path: '/home-admin/inicio-turmas' },
+          { text: 'Criar Alunos', icon: <PersonAddIcon />, path: '/home-admin/criar-alunos' },
+          { text: 'Criar Salas', icon: <MeetingRoomIcon />, path: '/home-admin/criar-salas' },
+          { text: 'Dashboard do Professor', icon: <DashboardIcon />, path: '/home-admin/professor-dashboard' },
+          { text: 'Configurações', icon: <SettingsIcon />, path: '/home-admin/configuracoes' },
         ].map((item) => (
           <ListItem
             button

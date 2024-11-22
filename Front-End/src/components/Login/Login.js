@@ -22,7 +22,6 @@ function Login() {
       const data = await loginService(email, senha);
 
       if (data.token) {
-        localStorage.setItem('token', data.token);
         const userData = jwtDecode(data.token);
         setUser(userData);
 

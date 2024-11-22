@@ -137,7 +137,7 @@ async function login(req, res) {
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
         );
-        res.status(200).json({ msg: 'Login realizado com sucesso', token })
+        res.status(200).json({ msg: 'Login realizado com sucesso', token, userId: user.id })
     } catch (error) {
         res.status(500).json({ msg: 'Erro no server' });
         console.log(error);

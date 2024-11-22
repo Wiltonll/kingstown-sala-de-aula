@@ -1,14 +1,46 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Box, Paper } from '@mui/material';
 
-const CriarSalas = () => {
+const CriarSalas = ({ setTurmas }) => {
   const [nomeSala, setNomeSala] = useState('');
   const [descricao, setDescricao] = useState('');
-  const [horario, setHorario] = useState('');
+  const token = localStorage.getItem('token');
+  const professor_id = localStorage.getItem('professor_id')
+  
+  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Sala Criada:', { nomeSala, descricao, horario });
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+    
+    if (!token || !professor_id) {
+      alert("Token ou professor_id não encontrados. Realize o login novamente.");
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:3000/turma', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          nome: nomeSala,
+          descricao: descricao,
+          professor_id: Number(professor_id)
+        }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        alert('Turma criada com sucesso');
+        setTurmas((prevTurmas) => [...prevTurmas, data]);
+      } else {
+        alert(data.msg || 'Erro ao criar Turma');
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+      alert('Deu erro', error);
+    }
   };
 
   return (
@@ -81,40 +113,9 @@ const CriarSalas = () => {
             variant="outlined"
             fullWidth
             margin="normal"
-            type="number"
+            type="text"
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
-            required
-            sx={{
-              // Define a cor do rótulo
-              '& .MuiInputLabel-root': {
-                color: '#5922A0',
-              },
-              // Define a cor do rótulo quando focado
-              '& .MuiInputLabel-root.Mui-focused': {
-                color: '#5922A0',
-              },
-              // Configura o contorno do campo
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                  borderColor: '#5922A0', // Borda inicial
-                },
-                '&:hover fieldset': {
-                  borderColor: '#7E57C2', // Borda ao passar o mouse
-                },
-                '&.Mui-focused fieldset': {
-                  borderColor: '#5922A0', // Borda quando focado
-                },
-              },
-            }}
-          />
-          <TextField
-            label="Dias/Horários"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            value={horario}
-            onChange={(e) => setHorario(e.target.value)}
             required
             sx={{
               // Define a cor do rótulo

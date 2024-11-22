@@ -22,7 +22,7 @@ async function postTurma(req, res) {
         }
 
         // Criar a turma
-        const turma = await Turma.create({ nome, descricao, professor_id });
+        const turma = await Turma.create({ nome, descricao, professor_id: Number(professor_id) });
         res.status(201).json(turma);
     } catch (error) {
         res.status(400).json({ error: 'Erro ao criar uma nova turma' })

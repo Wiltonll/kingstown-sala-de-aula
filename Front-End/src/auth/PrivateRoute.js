@@ -1,23 +1,25 @@
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './AuthContext';
-import { useEffect } from 'react';
 
-
-function PrivateRoute({ children }) {
+function PrivateRoute({ children, role }) {
   const { user } = useAuth();
-  const navigate = useNavigate();
+  const location = useLocation();
 
-  useEffect(() => {
-    if (user) {
-      if (user.role === 'admin') {
-        navigate('/home-admin');
-      } else if (user.role === 'user') {
-        navigate('/home-user');
-      } 
+  // Se o usuário não estiver autenticado, redireciona para login
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  // Redireciona para a página correta caso o usuário esteja na rota errada
+  if (user.role !== role) {
+    const targetPath = user.role === 'admin' ? '/home-admin' : '/home-user';
+    if (location.pathname !== targetPath) {
+      return <Navigate to={targetPath} />;
     }
-  }, [user, navigate]);
+  }
 
-  return user ? children : <Navigate to="/login" />;
+  // Renderiza o conteúdo protegido
+  return children;
 }
 
 export default PrivateRoute;
