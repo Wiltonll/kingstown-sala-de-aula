@@ -146,6 +146,24 @@ async function removeAluno(req, res) {
     }
 }
 
+async function getAlunoTurma(req, res) {
+    const { alunoId } = req.params;
+
+  try {
+    const turmas = await Turma.findAll({
+      include: {
+        model: TurmaAluno,
+        where: { aluno_id: alunoId },
+      },
+    }); 
+
+    res.status(200).json(turmas);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao buscar turmas do aluno' });
+    console.error(error);
+  }
+}
+
 //Funções para Criar, Listar, Atualizar e Deletar Arquivos das turmas
 async function postArquivo(req, res) {
     const { turma_id, nome, tipo, url } = req.body;
@@ -327,4 +345,5 @@ async function deleteCampo(req, res) {
     }
 }
 
-module.exports = { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, postArquivo, getArquivo, putArquivo, deleteArquivo, postCampo, getCampos, putCampo, deleteCampo };
+module.exports = { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, 
+getAlunoTurma, postArquivo, getArquivo, putArquivo, deleteArquivo, postCampo, getCampos, putCampo, deleteCampo };

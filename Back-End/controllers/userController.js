@@ -90,6 +90,41 @@ async function putUser(req, res){
     }
 };
 
+async function alterarSenha(req, res) {
+    const { senhaAtual, novaSenha } = req.body;
+    const alunoId = req.params.id;
+
+    if (!senhaAtual || !novaSenha) {
+        return res.status(400).json({ error: 'Ambos os campos são obrigatórios.' });
+    }
+
+    try {
+        // Buscar o aluno pelo ID
+        const aluno = await User.findByPk(alunoId);
+
+        if (!aluno) {
+        return res.status(404).json({ error: 'Aluno não encontrado.' });
+        }
+
+        // Verificar se a senha atual está correta
+        const senhaValida = await bcrypt.compare(senhaAtual, aluno.senha);
+        if (!senhaValida) {
+        return res.status(400).json({ error: 'Senha atual incorreta.' });
+        }
+
+        // Atualizar a senha (com hash)
+        const novaSenhaHash = await bcrypt.hash(novaSenha, 12);
+        aluno.senha = novaSenhaHash;
+        await aluno.save();
+
+        return res.status(200).json({ message: 'Senha alterada com sucesso.' });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Erro ao alterar a senha.' });
+    }
+};
+
 async function deleteUser(req, res) {
     try {
         //Delete user
@@ -137,7 +172,7 @@ async function login(req, res) {
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
         );
-        res.status(200).json({ msg: 'Login realizado com sucesso', token, userId: user.id })
+        res.status(200).json({ msg: 'Login realizado com sucesso', token, userId: user.id, role: user.role })
     } catch (error) {
         res.status(500).json({ msg: 'Erro no server' });
         console.log(error);
@@ -145,4 +180,4 @@ async function login(req, res) {
 }
 
 
-module.exports = { getUser, postUser, putUser, deleteUser, login };
+module.exports = { getUser, postUser, putUser, alterarSenha, deleteUser, login };

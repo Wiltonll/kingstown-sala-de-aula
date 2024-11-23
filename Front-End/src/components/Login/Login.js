@@ -26,9 +26,9 @@ function Login() {
         setUser(userData);
 
         if (userData.role === 'admin') {
-          navigate('/home-admin');
+          navigate('/home-admin/inicio-turmas');
         } else if (userData.role === 'user') {
-          navigate('/home-user');
+          navigate('/home-user/inicio-turmas');
         } 
       } else {
         setError(data.msg);

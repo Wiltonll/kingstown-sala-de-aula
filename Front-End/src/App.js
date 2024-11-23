@@ -8,6 +8,7 @@ import { AuthProvider } from './auth/AuthContext';
 
 
 
+
 function App() {
   return (
     
@@ -18,7 +19,6 @@ function App() {
 
            <Route path="/login" element={<Login />} />
           
-           {/* Rotas protegidas por tipo de usuário */}
           <Route
             path="/home-admin/*"
             element={

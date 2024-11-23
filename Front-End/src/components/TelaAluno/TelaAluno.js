@@ -18,11 +18,8 @@ function TelaAluno() {
           <MenuDrawerA />
           <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8 }}>
             <Routes>
-              <Route path="/" element={<InicioTurmas />} />
-              <Route path="/configuracoes" element={<Configuracoes />} />
-              <Route path="/configuracoes" element={<Configuracoesdaconta />} />
-              <Route path="/configuracoesdaconta" element={<ConfigTela />} />
-              <Route path="/alunos" element={<AlunosList />} />
+              <Route path="inicio-turmas" element={<InicioTurmas />} />
+              <Route path="configuracoesdaconta" element={<ConfigTela />} />
             </Routes>
           </Box>
         </Box>

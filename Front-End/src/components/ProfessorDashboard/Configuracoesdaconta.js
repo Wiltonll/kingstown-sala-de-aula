@@ -28,19 +28,6 @@ const ConfigTela = () => {
           <Card className={styles.card}>
             <CardContent>
               <Grid container direction="column" spacing={2}>
-                <Grid item>
-                  <Typography variant="h6" className={styles.cardTitle}>
-                    Alterar Nome de Perfil
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    className={styles.button}
-                  >
-                    Alterar Nome
-                  </Button>
-                </Grid>
 
                 <Grid item>
                   <Typography variant="h6" className={styles.cardTitle}>
@@ -59,7 +46,7 @@ const ConfigTela = () => {
 
                 <Grid item>
                   <Typography variant="h6" className={styles.cardTitle}>
-                    Falar com o Professor
+                    Logout
                   </Typography>
                   <Button
                     variant="contained"
@@ -67,21 +54,7 @@ const ConfigTela = () => {
                     fullWidth
                     className={styles.button}
                   >
-                    Falar com o Professor
-                  </Button>
-                </Grid>
-
-                <Grid item>
-                  <Typography variant="h6" className={styles.cardTitle}>
-                    Gerenciar Conta
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                    className={styles.button}
-                  >
-                    Excluir Conta
+                    Fazer Logout
                   </Button>
                 </Grid>
               </Grid>

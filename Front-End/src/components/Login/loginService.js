@@ -14,7 +14,15 @@ export async function loginService(email, senha) {
       localStorage.setItem('token', data.token);
     } 
     if (data.userId) {
-      localStorage.setItem('professor_id', data.userId);
+      // Armazena o ID de professor ou aluno com chaves distintas
+      if (data.role === 'admin') {
+        localStorage.setItem('professor_id', data.userId);
+      } else if (data.role === 'user') {
+        localStorage.setItem('aluno_id', data.userId); 
+      }
+    }
+    if(data.role){
+      localStorage.setItem('role', data.role)
     }
     return data;
 }

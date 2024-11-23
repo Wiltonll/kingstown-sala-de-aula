@@ -1,31 +1,34 @@
 import * as React from 'react';
 import styles from './InicioTurmas.module.css';
 import { useState, useEffect } from 'react';
-import CriarSalas from '../ProfessorDashboard/CriarSalas';
 
 const InicioTurmas = () => {
   const [turmas, setTurmas] = useState([]);
+  const userRole = localStorage.getItem('role');
+  const userId = localStorage.getItem(userRole === 'user' ? 'aluno_id' : 'professor_id');
 
   useEffect(() => {
-    // { id: 1, nome: 'Turma A', descricao: 'Descrição Turma', bg: 'linear-gradient(135deg, #FFD111, #FFF900)' }
-    // Função para buscar as turmas
     const fetchTurmas = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/turma');
-        const data = await response.json();
-        
-        if (response.ok) {
-          setTurmas(data); // Atualiza o estado com as turmas
-        } else {
-          console.error('Erro ao buscar turmas:', data.error);
-        }
-      } catch (error) {
-        console.error('Erro de conexão:', error);
+      let url = 'http://localhost:3000/turma';
+      if (userRole === 'user') {
+        url = `http://localhost:3000/turma/aluno/${userId}`;
       }
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: { 
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        setTurmas(data);
+      } catch (error) {
+        console.error('Erro ao buscar turmas:', error);
+      };
     };
 
-    fetchTurmas(); // Chama a função ao montar o componente
-  }, []);
+    fetchTurmas();
+  }, [userRole, userId]);
 
   return (
     <div className={styles.container}>

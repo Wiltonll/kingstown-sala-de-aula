@@ -7,7 +7,7 @@ const AlterarSenha = () => {
   const [novaSenha, setNovaSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
 
-  const handleAlterarSenha = () => {
+  const handleSubmit = () => {
     if (novaSenha !== confirmarSenha) {
       alert('As senhas não coincidem!');
       return;
@@ -50,7 +50,7 @@ const AlterarSenha = () => {
           variant="contained"
           color="primary"
           fullWidth
-          onClick={handleAlterarSenha}
+          type='submit'
           className={styles.button}
         >
           Alterar Senha
