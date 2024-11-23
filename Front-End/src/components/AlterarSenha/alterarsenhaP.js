@@ -13,13 +13,15 @@ const AlterarSenha = () => {
       return;
     }
     
-    const alunoId = localStorage.getItem('aluno_id'); // Recuperar ID do aluno
+    const professorId = localStorage.getItem('professor_id'); // Recuperar ID do professor
+    const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch(`http://localhost:3000/troca-senha/${alunoId}`, {
+      const response = await fetch(`http://localhost:3000/troca-senha/${professorId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ senhaAtual, novaSenha }),
       });

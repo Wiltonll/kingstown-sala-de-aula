@@ -81,7 +81,7 @@ export default function MenuDrawerA() {
       >
         {[
           { text: 'Início', icon: <HomeIcon />, path: '/home-user/inicio-turmas' },
-          { text: 'Configurações', icon: <SettingsIcon />, path: '/home-user/configuracoesdaconta' },
+          { text: 'Configurações', icon: <SettingsIcon />, path: '/home-user/configuracoes' },
         ].map((item) => (
           <ListItem
             button

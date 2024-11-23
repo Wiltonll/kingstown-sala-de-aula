@@ -5,7 +5,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
 
-
 const theme = createTheme({
     palette: {
       primary: {
@@ -16,7 +15,16 @@ const theme = createTheme({
 });
 
 const ConfigTela = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Remover dados do localStorage e redirecionar
+    localStorage.removeItem('token');
+    localStorage.removeItem('aluno_id');
+    alert('Você saiu da sua conta!');
+    navigate('/login');
+  }
+
   return (
     <ThemeProvider theme={theme}>
     <Box className={styles.container}>
@@ -38,7 +46,7 @@ const ConfigTela = () => {
                     color="primary"
                     fullWidth
                     className={styles.button}
-                    onClick={() => navigate('/alterar-senha')}
+                    onClick={() => navigate('/home-admin/configuracoes/alterar-senha')}
                   >
                     Alterar Senha
                   </Button>
@@ -53,6 +61,7 @@ const ConfigTela = () => {
                     color="primary"
                     fullWidth
                     className={styles.button}
+                    onClick={handleLogout}
                   >
                     Fazer Logout
                   </Button>

@@ -92,7 +92,7 @@ async function putUser(req, res){
 
 async function alterarSenha(req, res) {
     const { senhaAtual, novaSenha } = req.body;
-    const alunoId = req.params.id;
+    const { id } = req.params;
 
     if (!senhaAtual || !novaSenha) {
         return res.status(400).json({ error: 'Ambos os campos são obrigatórios.' });
@@ -100,7 +100,7 @@ async function alterarSenha(req, res) {
 
     try {
         // Buscar o aluno pelo ID
-        const aluno = await User.findByPk(alunoId);
+        const aluno = await User.findOne({ where: { id } });
 
         if (!aluno) {
         return res.status(404).json({ error: 'Aluno não encontrado.' });
@@ -124,7 +124,40 @@ async function alterarSenha(req, res) {
         return res.status(500).json({ error: 'Erro ao alterar a senha.' });
     }
 };
+async function alterarSenhaProfessor(req, res) {
+    const { senhaAtual, novaSenha } = req.body;
+    const userId = req.userId
 
+    if (!senhaAtual || !novaSenha) {
+        return res.status(400).json({ error: 'Ambos os campos são obrigatórios.' });
+    }
+
+    try {
+        // Buscar o aluno pelo ID
+        const aluno = await User.findOne({ where: { id: userId } });
+
+        if (!aluno) {
+        return res.status(404).json({ error: 'Aluno não encontrado.' });
+        }
+
+        // Verificar se a senha atual está correta
+        const senhaValida = await bcrypt.compare(senhaAtual, aluno.senha);
+        if (!senhaValida) {
+        return res.status(400).json({ error: 'Senha atual incorreta.' });
+        }
+
+        // Atualizar a senha (com hash)
+        const novaSenhaHash = await bcrypt.hash(novaSenha, 12);
+        aluno.senha = novaSenhaHash;
+        await aluno.save();
+
+        return res.status(200).json({ message: 'Senha alterada com sucesso.' });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Erro ao alterar a senha.' });
+    }
+};
 async function deleteUser(req, res) {
     try {
         //Delete user
@@ -180,4 +213,4 @@ async function login(req, res) {
 }
 
 
-module.exports = { getUser, postUser, putUser, alterarSenha, deleteUser, login };
+module.exports = { getUser, postUser, putUser, alterarSenha, alterarSenhaProfessor, deleteUser, login };

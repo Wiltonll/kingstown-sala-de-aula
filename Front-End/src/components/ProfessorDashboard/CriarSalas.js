@@ -33,6 +33,8 @@ const CriarSalas = ({ setTurmas }) => {
       const data = await response.json();
       if (response.ok) {
         alert('Turma criada com sucesso');
+        setNomeSala('');
+        setDescricao('');
         setTurmas((prevTurmas) => [...prevTurmas, data]);
       } else {
         alert(data.msg || 'Erro ao criar Turma');

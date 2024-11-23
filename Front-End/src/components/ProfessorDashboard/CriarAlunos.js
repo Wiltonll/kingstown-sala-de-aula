@@ -29,6 +29,10 @@ const CriarAlunos = () => {
       const data = await response.json();
       if (response.ok) {
         alert('Aluno criado com sucesso');
+        setNomeAluno('');
+        setEmailAluno('');
+        setSenhaAluno('');
+        setConfirmarSenha('');
       } else {
         alert(data.msg || 'Erro ao criar aluno');
       }
