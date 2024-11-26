@@ -25,6 +25,7 @@ import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import Snackbar from '@mui/material/Snackbar';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import { Link } from 'react-router-dom';
 import {
   Menu,
   MenuItem,
@@ -212,10 +213,11 @@ const handleCloseAddAlunoForm = () => {
         </DrawerHeader>
         <Divider />
         <List>
-          {[{ text: 'Início', icon: <HomeIcon /> }, { text: 'Configurações', icon: <SettingsIcon /> }].map(
+          {[{ text: 'Início', icon: <HomeIcon />, link: '/ProfessorDashboard' }, 
+          { text: 'Configurações', icon: <SettingsIcon /> }].map(
             (item, index) => (
               <ListItem key={item.text} disablePadding>
-                <ListItemButton>
+                <ListItemButton component={item.link ? Link : 'button'} to={item.link || '#'}>
                   <ListItemIcon sx={{ color: '#5922A0' }}>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.text} sx={{ color: '#5922A0' }} />
                 </ListItemButton>
