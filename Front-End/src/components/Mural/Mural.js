@@ -24,6 +24,13 @@ import CardContent from '@mui/material/CardContent';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import Snackbar from '@mui/material/Snackbar';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -70,8 +77,15 @@ export default function PersistentDrawerLeft() {
     { id: 1, titulo: 'Bem-vindos à turma!', descricao: 'Esse é o mural de avisos.' },
     { id: 2, titulo: 'Lembrete', descricao: 'Entregar o trabalho até sexta-feira.' },
   ]);
-  const [newPost, setNewPost] = React.useState({ titulo: '', descricao: '' });
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
+
+  // Adicionado: Estado e funções do formulário
+  const [openForm, setOpenForm] = React.useState(false);
+  const [formData, setFormData] = React.useState({
+    titulo: '',
+    descricao: '',
+    arquivo: null,
+  });
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -81,17 +95,28 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewPost({ ...newPost, [name]: value });
+  const handleOpenForm = () => {
+    setOpenForm(true);
   };
 
-  const handleAddPost = () => {
-    if (newPost.titulo && newPost.descricao) {
-      setPosts([...posts, { id: posts.length + 1, titulo: newPost.titulo, descricao: newPost.descricao }]);
-      setNewPost({ titulo: '', descricao: '' });
-      setOpenSnackbar(true);
-    }
+  const handleCloseForm = () => {
+    setOpenForm(false);
+    setFormData({ titulo: '', descricao: '', arquivo: null }); // Limpar os campos do formulário
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, arquivo: e.target.files[0] });
+  };
+
+  const handleSubmit = () => {
+    console.log('Dados enviados:', formData);
+    // Aqui você pode adicionar lógica para enviar os dados para o servidor ou atualizar o estado
+    handleCloseForm();
   };
 
   const handleCloseSnackbar = () => {
@@ -174,8 +199,9 @@ export default function PersistentDrawerLeft() {
       <Main open={open}>
         <DrawerHeader />
         <Box sx={{ padding: 2 }}>
+          {/* Atualizado: Botão "Anexar Arquivos" */}
           <Button
-            onClick={handleAddPost}
+            onClick={handleOpenForm}
             variant="contained"
             sx={{
               backgroundColor: '#6A0DAD',
@@ -183,44 +209,88 @@ export default function PersistentDrawerLeft() {
               marginBottom: 3,
               '&:hover': {
                 backgroundColor: '#5922A0',
-                transitionDuration: '150ms',
+                
               },
-              transition: 'background-color 150ms ease',
+              '&:active': {
+                backgroundColor: '#4B007D',
+              },
             }}
           >
             <AddIcon sx={{ marginRight: 1 }} />
-            Adicionar Novo Aviso
+            Adicionar Arquivos
           </Button>
 
-          <TextField
-            label="Título"
-            variant="outlined"
-            fullWidth
-            sx={{ marginBottom: 2 }}
-            name="titulo"
-            value={newPost.titulo}
-            onChange={handleInputChange}
-          />
-          <TextField
-            label="Descrição"
-            variant="outlined"
-            fullWidth
-            sx={{ marginBottom: 3 }}
-            name="descricao"
-            value={newPost.descricao}
-            onChange={handleInputChange}
-          />
-
-          <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 2 }}>
-            {posts.map((post) => (
-              <Card key={post.id} sx={{ backgroundColor: '#FFD105', color: '#6A0DAD' }}>
-                <CardContent>
-                  <Typography variant="h6">{post.titulo}</Typography>
-                  <Typography variant="body2">{post.descricao}</Typography>
-                </CardContent>
-              </Card>
-            ))}
-          </Box>
+          {/* Formulário como um modal */}
+          <Dialog open={openForm} onClose={handleCloseForm}>
+          <DialogTitle
+            sx={{
+              color: '#6A0DAD', 
+            }}
+          >
+            Anexar Arquivo
+          </DialogTitle>
+            <DialogContent>
+              <TextField
+                label="Título"
+                variant="outlined"
+                fullWidth
+                sx={{ marginBottom: 2,
+                  '& .MuiOutlinedInput-root': {
+                    '& input': {
+                      padding: '10px', // Ajusta o padding interno
+                    },
+                  },
+                }}
+                name="titulo"
+                value={formData.titulo}
+                onChange={handleInputChange}
+              />
+              <TextField
+                label="Descrição"
+                variant="outlined"
+                fullWidth
+                multiline
+                rows={3}
+                sx={{ marginBottom: 2 }}
+                name="descricao"
+                value={formData.descricao}
+                onChange={handleInputChange}
+              />
+              <Button
+                variant="contained"
+                component="label"
+                sx={{
+                  backgroundColor: '#FFD105',
+                  color: '#6A0DAD',
+                  '&:hover': {
+                    backgroundColor: '#E6B800',
+                  },
+                }}
+              >
+                <AttachFileIcon sx={{ marginRight: 1 }} />
+                Anexar Arquivo
+                <input
+                  type="file"
+                  accept="image/*,video/*,.pdf,.doc,.docx"
+                  hidden
+                  onChange={handleFileChange}
+                />
+              </Button>
+              {formData.arquivo && (
+                <Typography sx={{ marginTop: 1 }}>
+                  Arquivo selecionado: {formData.arquivo.name}
+                </Typography>
+              )}
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleCloseForm} color="secondary">
+                Cancelar
+              </Button>
+              <Button onClick={handleSubmit} variant="contained" color="secondary">
+                Enviar
+              </Button>
+            </DialogActions>
+          </Dialog>
 
           <Snackbar
             open={openSnackbar}
