@@ -277,29 +277,6 @@ const handleCloseAddAlunoForm = () => {
             Anexar Arquivo ou Postagem
             </DialogTitle>
             <DialogContent>
-            <Button
-                variant="contained"
-                component="label"
-                sx={{  marginBottom: 2,
-                  backgroundColor: '#FFD105',
-                  color: '#6A0DAD',
-                  '&:hover': {
-                    backgroundColor: '#E6B800',
-                  },
-                }}
-                onClick={handleMenuClick} // Abre o menu ao clicar
-              >
-                Selecionar Turma
-                </Button>
-          <Menu
-                anchorEl={anchorEl} // Define o elemento de âncora
-                open={openMenu} // Verifica se o menu está aberto
-                onClose={handleMenuClose} // Fecha o menu ao clicar fora
-              >
-                <MenuItem onClick={() => handleSelectTurma('Turma A')}>Turma A</MenuItem>
-                <MenuItem onClick={() => handleSelectTurma('Turma B')}>Turma B</MenuItem>
-                <MenuItem onClick={() => handleSelectTurma('Turma C')}>Turma C</MenuItem>
-        </Menu>
               <TextField
                 label="Título"
                 variant="outlined"
@@ -378,32 +355,14 @@ const handleCloseAddAlunoForm = () => {
           label="Matrícula ou Email"
           variant="outlined"
           fullWidth
-          sx={{ marginBottom: 2 }}
+          sx={{ marginBottom: 2,
+            '& .MuiOutlinedInput-root': {
+              '& input': {
+                padding: '5px', // Ajusta o padding interno
+              },
+            },
+           }}
         />
-        {/* Botão para selecionar turma */}
-        <Button
-          variant="contained"
-          sx={{
-          backgroundColor: '#FFD105',
-          color: '#6A0DAD',
-          marginBottom: 2,
-          '&:hover': {
-           backgroundColor: '#E6B800',
-        },
-      }}
-      onClick={handleMenuClick}
-      >
-      Selecionar Turma
-    </Button>
-    <Menu
-      anchorEl={anchorEl}
-      open={openMenu}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={() => handleSelectTurma('Turma A')}>Turma A</MenuItem>
-      <MenuItem onClick={() => handleSelectTurma('Turma B')}>Turma B</MenuItem>
-      <MenuItem onClick={() => handleSelectTurma('Turma C')}>Turma C</MenuItem>
-    </Menu>
   </DialogContent>
     <DialogActions>
     <Button onClick={handleCloseAddAlunoForm} color="secondary">
