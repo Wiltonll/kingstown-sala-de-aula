@@ -246,7 +246,7 @@ const handleCloseAddAlunoForm = () => {
             }}
           >
             <AddIcon sx={{ marginRight: 1 }} />
-            Adicionar Arquivos
+            Adicionar Postagem
           </Button>
 
       <Button
@@ -273,7 +273,7 @@ const handleCloseAddAlunoForm = () => {
               color: '#6A0DAD', 
             }}
           >
-            Anexar Arquivo
+            Anexar Arquivo ou Postagem
             </DialogTitle>
             <DialogContent>
             <Button
