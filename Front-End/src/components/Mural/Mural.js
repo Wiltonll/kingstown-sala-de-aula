@@ -26,6 +26,8 @@ import AddIcon from '@mui/icons-material/Add';
 import Snackbar from '@mui/material/Snackbar';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import {
+  Menu,
+  MenuItem,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -71,10 +73,37 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function PersistentDrawerLeft() {
+  const [anchorEl, setAnchorEl] = React.useState(null); // Estado para controlar o menu
+const openMenu = Boolean(anchorEl); // Verifica se o menu está aberto
+
+const handleMenuClick = (event) => {
+  setAnchorEl(event.currentTarget); // Define o botão como âncora do menu
+};
+
+const handleMenuClose = () => {
+  setAnchorEl(null); // Fecha o menu
+};
+
+const handleSelectTurma = (turma) => {
+  console.log(`Turma selecionada: ${turma}`); // Substitua com sua lógica
+  handleMenuClose(); // Fecha o menu após a seleção
+};
+
+const [openAddAlunoForm, setOpenAddAlunoForm] = React.useState(false);
+
+const handleOpenAddAlunoForm = () => {
+  setOpenAddAlunoForm(true);
+};
+
+const handleCloseAddAlunoForm = () => {
+  setOpenAddAlunoForm(false);
+};
+
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [posts, setPosts] = React.useState([
-    { id: 1, titulo: 'Bem-vindos à turma!', descricao: 'Esse é o mural de avisos.' },
+    { id: 1, titulo: 'Bem-vindos à turma!', descricao: 'Esse é o mural de arquivos.' },
     { id: 2, titulo: 'Lembrete', descricao: 'Entregar o trabalho até sexta-feira.' },
   ]);
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
@@ -220,7 +249,24 @@ export default function PersistentDrawerLeft() {
             Adicionar Arquivos
           </Button>
 
-          {/* Formulário como um modal */}
+      <Button
+         onClick={handleOpenAddAlunoForm}
+         variant="contained"
+          sx={{
+         backgroundColor: '#FFD105',
+        color: '#6A0DAD',
+        marginBottom: 3,
+        '&:hover': {
+         backgroundColor: '#E6B800',
+    },
+  }}
+        >
+          <AddIcon sx={{ marginRight: 1 }} />
+        Adicionar Alunos
+    </Button>
+
+
+          {/* Formulário ADICIONAR ARQUIVOS como um modal */}
           <Dialog open={openForm} onClose={handleCloseForm}>
           <DialogTitle
             sx={{
@@ -228,8 +274,31 @@ export default function PersistentDrawerLeft() {
             }}
           >
             Anexar Arquivo
-          </DialogTitle>
+            </DialogTitle>
             <DialogContent>
+            <Button
+                variant="contained"
+                component="label"
+                sx={{  marginBottom: 2,
+                  backgroundColor: '#FFD105',
+                  color: '#6A0DAD',
+                  '&:hover': {
+                    backgroundColor: '#E6B800',
+                  },
+                }}
+                onClick={handleMenuClick} // Abre o menu ao clicar
+              >
+                Selecionar Turma
+                </Button>
+          <Menu
+                anchorEl={anchorEl} // Define o elemento de âncora
+                open={openMenu} // Verifica se o menu está aberto
+                onClose={handleMenuClose} // Fecha o menu ao clicar fora
+              >
+                <MenuItem onClick={() => handleSelectTurma('Turma A')}>Turma A</MenuItem>
+                <MenuItem onClick={() => handleSelectTurma('Turma B')}>Turma B</MenuItem>
+                <MenuItem onClick={() => handleSelectTurma('Turma C')}>Turma C</MenuItem>
+        </Menu>
               <TextField
                 label="Título"
                 variant="outlined"
@@ -292,11 +361,65 @@ export default function PersistentDrawerLeft() {
             </DialogActions>
           </Dialog>
 
+              {/* Formulário ADICIONAR ALUNO como um modal */}
+
+          <Dialog open={openAddAlunoForm} onClose={handleCloseAddAlunoForm}>
+      <DialogTitle
+        sx={{
+        color: '#6A0DAD', // Título em roxo
+    }}
+    >
+    Adicionar Aluno
+    </DialogTitle>
+    <DialogContent>
+        {/* Campo para matrícula ou email */}
+         <TextField
+          label="Matrícula ou Email"
+          variant="outlined"
+          fullWidth
+          sx={{ marginBottom: 2 }}
+        />
+        {/* Botão para selecionar turma */}
+        <Button
+          variant="contained"
+          sx={{
+          backgroundColor: '#FFD105',
+          color: '#6A0DAD',
+          marginBottom: 2,
+          '&:hover': {
+           backgroundColor: '#E6B800',
+        },
+      }}
+      onClick={handleMenuClick}
+      >
+      Selecionar Turma
+    </Button>
+    <Menu
+      anchorEl={anchorEl}
+      open={openMenu}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={() => handleSelectTurma('Turma A')}>Turma A</MenuItem>
+      <MenuItem onClick={() => handleSelectTurma('Turma B')}>Turma B</MenuItem>
+      <MenuItem onClick={() => handleSelectTurma('Turma C')}>Turma C</MenuItem>
+    </Menu>
+  </DialogContent>
+    <DialogActions>
+    <Button onClick={handleCloseAddAlunoForm} color="secondary">
+      Cancelar
+    </Button>
+    <Button variant="contained" color="secondary">
+      Confirmar
+    </Button>
+  </DialogActions>
+</Dialog>
+
+
           <Snackbar
             open={openSnackbar}
             autoHideDuration={3000}
             onClose={handleCloseSnackbar}
-            message="Novo aviso adicionado!"
+            message="Novo arquivo adicionado!"
           />
         </Box>
       </Main>
