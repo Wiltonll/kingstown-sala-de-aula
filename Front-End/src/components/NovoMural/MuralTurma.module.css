@@ -1,0 +1,75 @@
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .titulo {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .adicionarPostagem {
+    margin-bottom: 20px;
+  }
+  
+  .textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .botaoAdicionar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .botaoAdicionar:hover {
+    background-color: #45a049;
+  }
+  
+  .postagens {
+    margin-top: 30px;
+  }
+  
+  .postagem {
+    background-color: #a83b3b;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border-left: 5px solid #4CAF50;
+  }
+  
+  .postagemHeader {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .autor {
+    font-weight: bold;
+  }
+  
+  .data {
+    color: #999;
+  }
+  
+  .conteudo {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  
+  .semPostagens {
+    font-size: 1.2rem;
+    color: #888;
+    text-align: center;
+  }

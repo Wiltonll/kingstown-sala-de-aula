@@ -5,14 +5,11 @@ import TelaProfessor from './components/TelaProfessor/TelaProfessor'
 import TelaAluno from './components/TelaAluno/TelaAluno'
 import PrivateRoute from '../src/auth/PrivateRoute';
 import { AuthProvider } from './auth/AuthContext';
-import Mural from './components/Mural/Mural';
-
-
+import Mural from './components/NovoMural/Mural';
 
 
 function App() {
   return (
-    
      <AuthProvider> 
        <Router>
          <Routes>
@@ -41,7 +38,5 @@ function App() {
      </AuthProvider>
   );
 }
-  */
-  )}
 
 export default App;

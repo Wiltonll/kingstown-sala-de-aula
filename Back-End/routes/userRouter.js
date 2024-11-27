@@ -1,6 +1,6 @@
 const express = require('express');
 const { postUser, getUser, putUser, alterarSenha, alterarSenhaProfessor, deleteUser, login } = require('../controllers/userController');
-const verificarAdmin = require('../middlewares/verificaradmin');
+const verificarAdmin = require('../middlewares/verificarAdmin');
 
 const router = express.Router();
 

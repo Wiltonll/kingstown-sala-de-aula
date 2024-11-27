@@ -12,6 +12,7 @@ require('./models/turmaAluno')
 require('./models/turmaCamposModel')
 require('./models/turmaModel')
 require('./models/userModel')
+require('./models/muralModel')
 
 app.use(express.json());
 app.use(cors());

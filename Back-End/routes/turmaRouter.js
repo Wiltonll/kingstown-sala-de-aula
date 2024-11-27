@@ -1,5 +1,5 @@
 const express = require('express');
-const { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, getAlunoTurma, postArquivo, getArquivo, putArquivo, deleteArquivo, postCampo, getCampos, putCampo, deleteCampo } = require('../controllers/turmaController');
+const { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, getAlunoTurma, postArquivo, getArquivo, putArquivo, deleteArquivo, postCampo, getCampos, putCampo, deleteCampo, adicionarItemMural, listarItensMural, excluirItemMural, atualizarItemMural } = require('../controllers/turmaController');
 const verificarAdmin = require('../middlewares/verificarAdmin');
 
 const router = express.Router();
@@ -23,5 +23,10 @@ router.post('/campo', verificarAdmin, postCampo);
 router.get('/campo/:turma_id', verificarAdmin, getCampos);
 router.put('/campo/:campo_id', verificarAdmin, putCampo);
 router.delete('/campo/:campo_id', verificarAdmin, deleteCampo)
+//Mural
+router.post('/mural', verificarAdmin, adicionarItemMural);
+router.get('/mural/:turma_id', listarItensMural);
+router.put('/mural/:mural_id', verificarAdmin, atualizarItemMural);
+router.delete('/mural/:mural_id', verificarAdmin, excluirItemMural)
 
 module.exports = router;

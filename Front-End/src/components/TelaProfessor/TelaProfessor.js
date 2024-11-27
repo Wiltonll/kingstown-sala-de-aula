@@ -7,6 +7,7 @@ import CriarAlunos from '../ProfessorDashboard/CriarAlunos';
 import CriarSalas from '../ProfessorDashboard/CriarSalas';
 import ConfigTela from '../ProfessorDashboard/ConfiguracoesProfessor';
 import AlterarSenha from '../AlterarSenha/alterarsenhaP'
+import Mural from '../NovoMural/Mural'
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { MyProvider } from '../../context';
@@ -20,6 +21,7 @@ function TelaProfessor() {
           <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8 }}>
             <Routes>
               <Route path="inicio-turmas" element={<InicioTurmas />} />
+              <Route path="inicio-turmas/mural/:turma_id" element={<Mural/>}/>
               <Route path="professor-dashboard" element={<ProfessorDashboard />} />
               <Route path="criar-alunos" element={<CriarAlunos />} />
               <Route path="criar-salas" element={<CriarSalas />} />

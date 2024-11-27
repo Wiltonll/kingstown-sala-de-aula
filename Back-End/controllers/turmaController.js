@@ -2,7 +2,8 @@ const Turma = require('../models/turmaModel');
 const User = require('../models/userModel');
 const Arquivo = require('../models/arquivoModel');
 const TurmaAluno = require('../models/turmaAluno');
-const TurmaCampos = require('../models/turmaCamposModel')
+const TurmaCampos = require('../models/turmaCamposModel');
+const Mural = require('../models/muralModel')
 require('dotenv').config();
 
 //Funções para Criar, listar, atualizar e deletar turmas
@@ -345,5 +346,98 @@ async function deleteCampo(req, res) {
     }
 }
 
+async function adicionarItemMural(req, res) {
+    try {
+        const { titulo, descricao, url, turma_id } = req.body;
+        const novoItem = await Mural.create({
+          titulo,
+          descricao,
+          url,
+          turma_id,
+        });
+        res.status(201).json(novoItem);
+    } catch (error) {
+        console.error('Erro ao criar postagem:', error);
+        res.status(500).json({ error: 'Erro ao criar postagem.' });
+    }
+}; 
+
+async function listarItensMural(req, res) {
+    try {
+        const { turma_id } = req.params;
+        const turma = await Turma.findOne({
+            where: { id: turma_id },
+            include: { model: Mural, as: 'murais' },
+        });
+
+        if (!turma) {
+            res.status(404).json({message: 'Turma não encontrada.'});
+        }
+
+        res.status(200).json({ message: 'Itens do mural da turma:', murais: turma.murais})
+    } catch (error) {
+        console.error('Erro ao listar itens do mural:', error);
+        res.status(500).json({
+            message: 'Erro ao listar itens do mural.',
+            error: error.message,
+        });
+        
+    }
+};
+
+async function atualizarItemMural(req, res) {
+    const { mural_id } = req.params;
+    const novosDados = req.body;
+
+    try {
+        const item = await Mural.findOne({ where:{mural_id} });
+
+        if (!item) {
+            return res.status(404).json({
+                message: 'Item do mural não encontrado.',
+            });
+        }
+
+        const itemAtualizado = await item.update(novosDados);
+
+        return res.status(200).json({
+            message: 'Item do mural atualizado com sucesso.',
+            data: itemAtualizado,
+        });
+    } catch (error) {
+        console.error('Erro ao atualizar item do mural:', error);
+        return res.status(500).json({
+            message: 'Erro ao atualizar item do mural.',
+            error: error.message,
+        });
+    };
+};
+
+async function excluirItemMural(req, res){
+    const { mural_id } = req.params;
+
+    try {
+        const item = await Mural.findOne({ where: {mural_id} });
+
+        if (!item) {
+            return res.status(404).json({
+                message: 'Item do mural não encontrado.',
+            });
+        }
+
+        await item.destroy();
+
+        return res.status(200).json({
+            message: 'Item do mural excluído com sucesso.',
+        });
+    } catch (error) {
+        console.error('Erro ao excluir item do mural:', error);
+        return res.status(500).json({
+            message: 'Erro ao excluir item do mural.',
+            error: error.message,
+        });
+    }
+};
+
 module.exports = { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, 
-getAlunoTurma, postArquivo, getArquivo, putArquivo, deleteArquivo, postCampo, getCampos, putCampo, deleteCampo };
+getAlunoTurma, postArquivo, getArquivo, putArquivo, deleteArquivo, postCampo, getCampos, putCampo, deleteCampo, adicionarItemMural, listarItensMural, atualizarItemMural, excluirItemMural };
