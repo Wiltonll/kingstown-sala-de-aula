@@ -1,5 +1,5 @@
 const express = require('express');
-const { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, getAlunoTurma, postArquivo, getArquivo, putArquivo, deleteArquivo, postCampo, getCampos, putCampo, deleteCampo, adicionarItemMural, listarItensMural, excluirItemMural, atualizarItemMural } = require('../controllers/turmaController');
+const { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, getAlunoTurma, postArquivo, getArquivo, putArquivo, deleteArquivo, postCampo, getCampos, putCampo, deleteCampo, adicionarItemMural, listarItensMural, excluirItemMural, atualizarItemMural, listarAlunos } = require('../controllers/turmaController');
 const verificarAdmin = require('../middlewares/verificarAdmin');
 const upload = require('../middlewares/upload')
 
@@ -14,6 +14,7 @@ router.delete('/turma/:id', verificarAdmin, deleteTurma);
 router.post('/adicionar', verificarAdmin, addAluno);
 router.delete('/remover', verificarAdmin, removeAluno);
 router.get('/turma/aluno/:alunoId', getAlunoTurma)
+router.get('/turma/:turma_id', listarAlunos)
 //Arquivos
 router.post('/arquivo', upload.single('anexo'), verificarAdmin, postArquivo);
 router.get('/arquivo/:turma_id', verificarAdmin, getArquivo);

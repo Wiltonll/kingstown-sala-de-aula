@@ -79,6 +79,29 @@ async function deleteTurma(req, res) {
     }
 };
 
+const listarAlunos = async (req, res) => {
+    const { turma_id } = req.params;
+
+    try {
+        const alunos = await TurmaAluno.findAll({
+            where: { turma_id },
+            include: {
+                model: User,
+                attributes: ['nome'] // Ajuste os atributos conforme necessário
+            }
+        });
+
+        if (alunos.length === 0) {
+            return res.status(404).json({ message: 'Nenhum aluno encontrado para esta turma.' });
+        }
+
+        res.status(200).json(alunos); // Retorna apenas os alunos
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Erro ao buscar alunos.' });
+    }
+};
+
 //Funções para adicionar e remover alunos das turmas
 async function addAluno(req, res) {
     const { turma_id, email } = req.body; // Os dados devem vir do corpo da requisição
@@ -469,4 +492,4 @@ async function excluirItemMural(req, res){
 };
 
 module.exports = { postTurma, getTurma, putTurma, deleteTurma, addAluno, removeAluno, 
-getAlunoTurma, postArquivo, getArquivo, putArquivo, deleteArquivo, postCampo, getCampos, putCampo, deleteCampo, adicionarItemMural, listarItensMural, atualizarItemMural, excluirItemMural };
+getAlunoTurma, postArquivo, getArquivo, putArquivo, deleteArquivo, postCampo, getCampos, putCampo, deleteCampo, adicionarItemMural, listarItensMural, atualizarItemMural, excluirItemMural, listarAlunos };

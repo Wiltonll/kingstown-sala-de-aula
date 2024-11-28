@@ -30,8 +30,19 @@ const MuralTurma = () => {
   useEffect(() => {
     fetchMural();
   }, [turma_id]);
-  // Função para adicionar nova postagem
+  
+  const formatarData = (dataCriacao) => {
 
+
+    const dataAtual = new Date(dataCriacao);
+    const dia = String(dataAtual.getDate()).padStart(2, '0');
+    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+    const ano = dataAtual.getFullYear();
+
+    return `${dia}/${mes}/${ano}`;
+  };
+  
+  // Função para adicionar nova postagem
   const handleAdicionarPostagem = async () => {
     const formData = new FormData();
     formData.append('titulo', titulo);
@@ -45,7 +56,6 @@ const MuralTurma = () => {
       const response = await fetch('http://localhost:3000/mural', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
         body: formData,
@@ -54,12 +64,13 @@ const MuralTurma = () => {
       alert("Postagem Adicionada");
 
       if (response.ok) {
+        await fetchMural();
         setTitulo('');
         setDescricao('');
         setArquivo(null); // Limpar arquivo após a postagem
         setMostrarModal(false); // Fechar modal após adicionar
         const novoMural = await response.json();
-        setMurais((prev) => [...prev, novoMural]);
+        setMurais((prev) => [novoMural, ...prev, ]);
       } 
       
     } catch (error) {
@@ -200,9 +211,12 @@ const MuralTurma = () => {
                 <div key={mural.id} className={styles.postagem}>
                   <div className={styles.postagemHeader}>
                     <span className={styles.autor}>{mural.titulo}</span>
-                    <span className={styles.data}>{(mural.descricao)}</span> 
+                    <span className={styles.data}>
+                      {formatarData(mural.dataCriacao)}
+                    </span> 
                   </div>
                   <p className={styles.conteudo}>{mural.url}</p>
+                  <span className={styles.data}>{(mural.descricao)}</span>
                 </div>
               </a>
             ))
