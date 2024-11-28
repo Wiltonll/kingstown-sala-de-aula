@@ -10,6 +10,8 @@ const MuralTurma = () => {
   const [descricao, setDescricao] = useState('');
   const [mostrarModal, setMostrarModal] = useState(false);
   const [arquivo, setArquivo] = useState(null); // Mudança aqui para armazenar arquivo
+  const [mostrarModalAluno, setMostrarModalAluno] = useState(false);
+  const [emailAluno, setEmailAluno] = useState('');
   const userRole = localStorage.getItem('role'); // 'user' ou 'professor'
   const token = localStorage.getItem('token');
 
@@ -39,7 +41,6 @@ const MuralTurma = () => {
       formData.append('anexo', arquivo); // Adiciona o arquivo ao FormData
     }
     
-
     try {
       const response = await fetch('http://localhost:3000/mural', {
         method: 'POST',
@@ -66,6 +67,29 @@ const MuralTurma = () => {
       console.error('Erro ao adicionar postagem:', error);
     }
   };
+
+  const handleAdicionarAluno = async () => {
+    try {
+        const response = await fetch('http://localhost:3000/adicionar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ turma_id: turma_id, email: emailAluno }),
+        });
+
+        alert('Aluno adicionado com sucesso!');
+
+        if (response.ok) {
+            setEmailAluno('');
+        }
+    } catch (error) {
+        console.error(error);
+        alert('Erro ao adicionar aluno');
+    }
+};
+
   return (
     <div className={styles.container}>
       <h1 className={styles.titulo}>Mural da Turma</h1>
@@ -73,14 +97,55 @@ const MuralTurma = () => {
       {/* Se o usuário for professor, ele pode adicionar postagens */}
       {/* Botão para abrir o modal */}
       {userRole === 'admin' && (
-        <button 
-          onClick={() => setMostrarModal(true)} 
-          className={styles.botaoAbrirModal}
-        >
-          Adicionar Nova Postagem
-        </button>
+        <div>
+            <button 
+              onClick={() => setMostrarModal(true)} 
+              className={styles.botaoAbrirModal}
+            >
+              Adicionar Nova Postagem
+            </button>
+            <button 
+              onClick={() => setMostrarModalAluno(true)} 
+              className={styles.botaoAbrirModal}
+            >
+              Adicionar aluno à turma
+            </button>
+        </div>
+        
       )}
       
+      {mostrarModalAluno && (
+        <div className={styles.modalOverlay} onClick={() => setMostrarModalAluno(false)}>
+          <div 
+            className={styles.modal} 
+            onClick={(e) => e.stopPropagation()} // Evita fechar ao clicar dentro do modal
+          >
+            <h4>Adicionar Aluno</h4>
+            <input
+              type="email"
+              placeholder="E-mail do aluno"
+              value={emailAluno}
+              onChange={(e) => setEmailAluno(e.target.value)}
+              className={styles.input}
+            />
+            <div className={styles.modalBotoes}>
+              <button 
+                onClick={handleAdicionarAluno} 
+                className={styles.botaoAdicionar}
+              >
+                Adicionar
+              </button>
+              <button 
+                onClick={() => setMostrarModalAluno(false)} 
+                className={styles.botaoCancelar}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
        {/* Modal */}
        {mostrarModal && (
         <div className={styles.modalOverlay} onClick={() => setMostrarModal(false)}>
