@@ -29,18 +29,18 @@
   }
   
   .postagem {
-    background-color:yellow;
+    background-color:rgb(109, 2, 109);
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 20px;
-    border-left: 5px solid rgb(109, 2, 109);
+    border-left: 5px solid yellow;
   }
   
   .postagemHeader {
     display: flex;
     justify-content: space-between;
     font-size: 0.9rem;
-    color: #555;
+    color:yellow;
   }
   
   .autor {
@@ -48,7 +48,7 @@
   }
   
   .data {
-    color: #999;
+    color: yellow;
   }
   
   .conteudo {
@@ -151,39 +151,44 @@
     color: purple; 
 }
 
-.arquivo {
-  background-color: yellow; /* Cor de fundo para diferenciar */
-  border: 2px #ccc; /* Borda pontilhada para destacar */
-  border-radius: 5px; /* Arredondamento das bordas */
-  color: purple; /* Cor do texto */
-  font-size: 1rem; /* Tamanho do texto */
-  padding: 10px; /* Espaçamento interno */
-  cursor: pointer; /* Mostra que o botão é clicável */
-  width: 100%; /* Largura completa */
-  display: block; /* Garante o comportamento de bloco */
-  margin-bottom: 15px; /* Espaçamento inferior */
+.arquivoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaço entre o botão e o texto */
 }
 
-.arquivo:hover {
-  background-color: #E6BE00; 
-  border-color: #888; 
-}
-
-.arquivo input[type="file"] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  opacity: 0; 
+.botaoEscolher {
+  display: flex;
+  align-items: center;
+  gap: 5px; 
+  background-color: yellow; 
+  color: purple; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
   cursor: pointer; 
-  height: 100%; 
-  width: 100%;
+  white-space: nowrap;
 }
 
+.botaoEscolher:hover {
+  background-color: #E6BE00; 
+}
 
-.arquivo:hover::before {
-  background-color: #E6BE00; /* Cor ao passar o mouse */
+.iconeArquivo {
+  font-size: 1.2rem; /* Tamanho do ícone */
+}
+
+.inputArquivo {
+  display: none; /* Esconde o input real */
+}
+
+.nomeArquivo {
+  align-items: center;
+  color: purple; 
+  font-size: 1rem; 
+  overflow: hidden; /* Esconde texto extra se for muito longo */
+  text-overflow: ellipsis; /* Adiciona "..." ao texto longo */
+  white-space: nowrap; /* Garante que fique em uma linha */
 }
 
 a {

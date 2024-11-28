@@ -178,12 +178,22 @@ const MuralTurma = () => {
               onChange={(e) => setDescricao(e.target.value)}
               className={styles.input}
             />
+            <div className={styles.arquivoContainer}>
+            <label htmlFor="arquivo" className={styles.botaoEscolher}>
+            <AttachFileIcon className={styles.iconeArquivo} />
+            Selecionar Arquivo
+            </label>
             <input
+              id="arquivo"
               type="file"
-              placeholder="URL (opcional)"
               onChange={(e) => setArquivo(e.target.files[0])}
-              className={styles.arquivo}
+              className={styles.inputArquivo}
             />
+            <span className={styles.nomeArquivo}>
+            {arquivo ? arquivo.name : "Nenhum arquivo selecionado"}
+            </span>
+            </div>
+
             <div className={styles.modalBotoes}>
               <button 
                 onClick={handleAdicionarPostagem} 

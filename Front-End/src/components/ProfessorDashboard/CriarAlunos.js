@@ -82,6 +82,11 @@ const CriarAlunos = () => {
             value={nomeAluno}
             onChange={(e) => setNomeAluno(e.target.value)}
             required
+            InputProps={{
+              sx: {
+                padding: '12px', // Adiciona espaçamento interno ao campo
+              },
+            }}
             sx={{
               // Define a cor do rótulo
               '& .MuiInputLabel-root': {
@@ -116,6 +121,11 @@ const CriarAlunos = () => {
             value={emailAluno}
             onChange={(e) => setEmailAluno(e.target.value)}
             required
+            InputProps={{
+              sx: {
+                padding: '12px', // Adiciona espaçamento interno ao campo
+              },
+            }}
             sx={{
               // Define a cor do rótulo
               '& .MuiInputLabel-root': {
@@ -148,6 +158,11 @@ const CriarAlunos = () => {
             value={senhaAluno}
             onChange={(e) => setSenhaAluno(e.target.value)}
             required
+            InputProps={{
+              sx: {
+                padding: '12px', // Adiciona espaçamento interno ao campo
+              },
+            }}
             sx={{
               // Define a cor do rótulo
               '& .MuiInputLabel-root': {
@@ -180,6 +195,11 @@ const CriarAlunos = () => {
             value={confirmarSenha}
             onChange={(e) => setConfirmarSenha(e.target.value)}
             required
+            InputProps={{
+              sx: {
+                padding: '12px', // Adiciona espaçamento interno ao campo
+              },
+            }}
             sx={{
               // Define a cor do rótulo
               '& .MuiInputLabel-root': {

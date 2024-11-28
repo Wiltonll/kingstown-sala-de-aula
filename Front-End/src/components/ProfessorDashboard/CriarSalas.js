@@ -85,6 +85,11 @@ const CriarSalas = ({ setTurmas }) => {
             value={nomeSala}
             onChange={(e) => setNomeSala(e.target.value)}
             required
+            InputProps={{
+              sx: {
+                padding: '12px', // Adiciona espaçamento interno ao campo
+              },
+            }}
             sx={{
               // Define a cor do rótulo
               '& .MuiInputLabel-root': {
@@ -119,6 +124,11 @@ const CriarSalas = ({ setTurmas }) => {
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
             required
+            InputProps={{
+              sx: {
+                padding: '12px', // Adiciona espaçamento interno ao campo
+              },
+            }}
             sx={{
               // Define a cor do rótulo
               '& .MuiInputLabel-root': {
