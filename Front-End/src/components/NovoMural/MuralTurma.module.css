@@ -8,6 +8,7 @@
     font-size: 2rem;
     margin-bottom: 20px;
     text-align: center;
+    color: purple;
   }
   
   .adicionarPostagem {
@@ -23,29 +24,16 @@
     margin-bottom: 10px;
   }
   
-  .botaoAdicionar {
-    background-color: #000000;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .botaoAdicionar:hover {
-    background-color: #45a049;
-  }
-  
   .postagens {
     margin-top: 30px;
   }
   
   .postagem {
-    background-color: #a83b3b;
+    background-color:yellow;
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 20px;
-    border-left: 5px solid #4CAF50;
+    border-left: 5px solid rgb(109, 2, 109);
   }
   
   .postagemHeader {
@@ -99,6 +87,11 @@
   .modal h2 {
     margin-top: 0;
   }
+
+  .modal h4 {
+    color: purple; 
+    font-size: 1.5rem; 
+}
   
   .input{
     width: 100%;
@@ -112,35 +105,87 @@
   .modalBotoes {
     display: flex;
     justify-content: space-between;
+   
   }
   
   .botaoAdicionar {
-    background-color: #4caf50;
-    color: white;
+    background-color: yellow;
+    color:purple;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
   
+  .botaoAdicionar:hover {
+    background-color: #E6BE00;
+    color: purple; 
+}
+  
   .botaoCancelar {
-    background-color: #f44336;
-    color: white;
+    background-color: purple;
+    color: yellow;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
+  
+  .botaoCancelar:hover {
+    background-color: #530253; 
+    color: yellow; 
+}
   
   .botaoAbrirModal {
     margin-bottom: 20px;
-    background-color: #000000;
-    color: white;
+    background-color: yellow;
+    color: purple;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
+  
+  .botaoAbrirModal:hover {
+    background-color: #E6BE00; 
+    color: purple; 
+}
+
+.arquivo {
+  background-color: yellow; /* Cor de fundo para diferenciar */
+  border: 2px #ccc; /* Borda pontilhada para destacar */
+  border-radius: 5px; /* Arredondamento das bordas */
+  color: purple; /* Cor do texto */
+  font-size: 1rem; /* Tamanho do texto */
+  padding: 10px; /* Espaçamento interno */
+  cursor: pointer; /* Mostra que o botão é clicável */
+  width: 100%; /* Largura completa */
+  display: block; /* Garante o comportamento de bloco */
+  margin-bottom: 15px; /* Espaçamento inferior */
+}
+
+.arquivo:hover {
+  background-color: #E6BE00; 
+  border-color: #888; 
+}
+
+.arquivo input[type="file"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0; 
+  cursor: pointer; 
+  height: 100%; 
+  width: 100%;
+}
+
+
+.arquivo:hover::before {
+  background-color: #E6BE00; /* Cor ao passar o mouse */
+}
+
 a {
   text-decoration: none;
   color: inherit;

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // Para pegar o ID da turma
 import styles from './MuralTurma.module.css';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 const MuralTurma = () => {
   const { turma_id } = useParams(); // Pegando o ID da turma
@@ -181,7 +182,7 @@ const MuralTurma = () => {
               type="file"
               placeholder="URL (opcional)"
               onChange={(e) => setArquivo(e.target.files[0])}
-              className={styles.input}
+              className={styles.arquivo}
             />
             <div className={styles.modalBotoes}>
               <button 
