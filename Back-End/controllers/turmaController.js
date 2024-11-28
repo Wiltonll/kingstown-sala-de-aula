@@ -167,30 +167,49 @@ async function getAlunoTurma(req, res) {
 
 //Funções para Criar, Listar, Atualizar e Deletar Arquivos das turmas
 async function postArquivo(req, res) {
-    const { turma_id, nome, tipo, url } = req.body;
-
     try {
-        // Verifica se a turma existe
+        console.log('Body recebido:', req.body); // Inspeciona os campos enviados
+        console.log('Arquivo recebido:', req.file); // Inspeciona o arquivo
+    
+        const { turma_id, nome, tipo } = req.body;
+    
+        // Verifica a existência de turma
         const turma = await Turma.findOne({ where: { id: turma_id } });
         if (!turma) {
-            return res.status(404).json({ error: 'Turma não encontrada' });
+          return res.status(404).json({ error: 'Turma não encontrada' });
         }
-
-        // Cria o novo arquivo associado à turma
+    
+        // Validações
+        if (!nome) {
+          return res.status(400).json({ error: 'O nome do arquivo é obrigatório.' });
+        }
+    
+        if (!tipo) {
+          return res.status(400).json({ error: 'O tipo do arquivo é obrigatório.' });
+        }
+    
+        if (!req.file) {
+          return res.status(400).json({ error: 'Arquivo não enviado.' });
+        }
+    
+        // Gera a URL do arquivo
+        const url = `http://localhost:3000/uploads/${arquivo.filename}`;
+    
+        // Criação do registro no banco de dados
         const arquivo = await Arquivo.create({
-            turma_id,
-            nome,
-            tipo,
-            url,
-            data_upload: new Date(), // Registra a data do upload
+          turma_id,
+          nome,
+          tipo,
+          url,
+          data_upload: new Date(),
         });
-
+    
         res.status(201).json({ message: 'Arquivo adicionado com sucesso', arquivo });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Erro ao adicionar arquivo à turma' });
+        console.error('Erro ao adicionar arquivo:', error);
+        res.status(500).json({ error: 'Erro ao adicionar arquivo.' });
     }
-}
+  }
 
 async function getArquivo(req, res) {
     const { turma_id } = req.params;
@@ -348,13 +367,23 @@ async function deleteCampo(req, res) {
 
 async function adicionarItemMural(req, res) {
     try {
-        const { titulo, descricao, url, turma_id } = req.body;
+        const { titulo, descricao, turma_id } = req.body;
+        const arquivo = req.file;
+        // Verifica se há um arquivo anexado
+
+        if (!arquivo) {
+            return res.status(400).json({ error: 'Arquivo é obrigatório.' });
+          }
+      
+        // Gera a URL do arquivo
+        const url = `http://localhost:3000/uploads/${arquivo.filename}`;
+
         const novoItem = await Mural.create({
-          titulo,
-          descricao,
-          url,
-          turma_id,
-        });
+            titulo,
+            descricao,
+            url,
+            turma_id,
+          });
         res.status(201).json(novoItem);
     } catch (error) {
         console.error('Erro ao criar postagem:', error);

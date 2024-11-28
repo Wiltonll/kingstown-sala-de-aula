@@ -5,6 +5,7 @@ const cors = require("cors");
 const sequelize = require('./infraestrutura/sequelize');
 const userRouter = require('./routes/userRouter');
 const turmaRouter = require('./routes/turmaRouter')
+const bodyParser = require('body-parser');
 
 // Carregando os modelos antes de importar  
 require('./models/arquivoModel')
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(cors());
 app.use('', userRouter)
 app.use('', turmaRouter)
+app.use(bodyParser.json());
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
