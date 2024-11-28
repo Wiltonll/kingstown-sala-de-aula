@@ -31,18 +31,7 @@ const MuralTurma = () => {
   useEffect(() => {
     fetchMural();
   }, [turma_id]);
-  
-  const formatarData = (dataCriacao) => {
 
-
-    const dataAtual = new Date(dataCriacao);
-    const dia = String(dataAtual.getDate()).padStart(2, '0');
-    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
-    const ano = dataAtual.getFullYear();
-
-    return `${dia}/${mes}/${ano}`;
-  };
-  
   // Função para adicionar nova postagem
   const handleAdicionarPostagem = async () => {
     const formData = new FormData();
@@ -62,18 +51,18 @@ const MuralTurma = () => {
         body: formData,
       });
 
-      alert("Postagem Adicionada");
+      
 
       if (response.ok) {
-        await fetchMural();
+        alert("Postagem Adicionada");
         setTitulo('');
         setDescricao('');
         setArquivo(null); // Limpar arquivo após a postagem
         setMostrarModal(false); // Fechar modal após adicionar
         const novoMural = await response.json();
-        setMurais((prev) => [novoMural, ...prev, ]);
+        setMurais((prev) => [novoMural, ...prev]);
       } 
-      
+      await fetchMural();
     } catch (error) {
       alert("Erro ao adicionar postagem")
       console.error('Erro ao adicionar postagem:', error);
@@ -222,9 +211,6 @@ const MuralTurma = () => {
                 <div key={mural.id} className={styles.postagem}>
                   <div className={styles.postagemHeader}>
                     <span className={styles.autor}>{mural.titulo}</span>
-                    <span className={styles.data}>
-                      {formatarData(mural.dataCriacao)}
-                    </span> 
                   </div>
                   <p className={styles.conteudo}>{mural.url}</p>
                   <span className={styles.data}>{(mural.descricao)}</span>
