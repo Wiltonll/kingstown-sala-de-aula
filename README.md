@@ -21,7 +21,7 @@ Um sistema de gerenciamento de atividades em sala de aula, desenvolvido com Reac
 <img align="center" alt="wil-Git" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" />
 </div>
 
-### 💻 Como rodar o projeto
+## 💻 Como rodar o projeto
 
 Siga os passos abaixo para rodar o projeto localmente na sua máquina.
 
