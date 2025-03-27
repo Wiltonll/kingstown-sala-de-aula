@@ -4,11 +4,11 @@ Um sistema de gerenciamento de atividades em sala de aula, desenvolvido com Reac
 
 ## 🚀 Funcionalidades
 
-- Cadastro e autenticação de usuários
-- Criação e visualização de turmas
-- Listagem de alunos
-- Registro de atividades e acompanhamento
-- Interface interativa com React
+- Cadastro e autenticação de usuários;
+- Criação e visualização de turmas;
+- Listagem de alunos;
+- Criação, registro de atividade, e acompanhamento;
+- Interface interativa.
 
 ## 🛠️ Tecnologias utilizadas
 <div style="display: inline_block"><br>
@@ -16,9 +16,9 @@ Um sistema de gerenciamento de atividades em sala de aula, desenvolvido com Reac
 <img align="center" alt="wil-Ts" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg">
 <img align="center" alt="wil-React" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg">
 <img align="center" alt="wil-Node" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg"/>
+<img align="center" alt="wil-Git" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" />
 <img align="center" alt="wil-Html" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"/>
 <img align="center" alt="wil-Css" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" />
-<img align="center" alt="wil-Git" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" />
 </div>
 
 ## 💻 Como rodar o projeto
@@ -32,9 +32,9 @@ Siga os passos abaixo para rodar o projeto localmente na sua máquina.
 
 ### 🚀 Passos
 
+```bash
 1. **Clone este repositório**
 
-```bash
 git clone https://github.com/seu-usuario/kingstown-sala-de-aula.git
 
 2. **Acesse a pasta do projeto**
@@ -51,6 +51,7 @@ npm start
 
 5. **Abra no navegador**
 
-Acesse: http://localhost:PORT
+Acesse: http://localhost:3000
+```
 
 
