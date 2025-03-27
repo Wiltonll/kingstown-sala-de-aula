@@ -32,25 +32,24 @@ Siga os passos abaixo para rodar o projeto localmente na sua máquina.
 
 ### 🚀 Passos
 
-```bash
 1. **Clone este repositório**
-
+```bash
 git clone https://github.com/seu-usuario/kingstown-sala-de-aula.git
-
+```
 2. **Acesse a pasta do projeto**
-
+```bash
 cd kingstown-sala-de-aula
-
+```
 3. **Instale as dependências**
-
+```bash
 npm install
-
+```
 4. **Rode o projeto em modo desenvolvimento**
-
+```bash
 npm start
-
+```
 5. **Abra no navegador**
-
+```bash
 Acesse: http://localhost:3000
 ```
 
